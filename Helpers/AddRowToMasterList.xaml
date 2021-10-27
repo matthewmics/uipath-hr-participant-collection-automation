@@ -13,7 +13,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>920,612</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1088.8,697.6</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>AddRowToMasterList_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -44,6 +44,7 @@
       <x:String>System.ComponentModel</x:String>
       <x:String>System.Runtime.Serialization</x:String>
       <x:String>System.Xml.Serialization</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -78,12 +79,47 @@
       <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="AddRowToMasterList" sap:VirtualizedContainerService.HintSize="375.2,280.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="AddRowToMasterList" sap:VirtualizedContainerService.HintSize="631.2,632.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="resumePath">
+        <Variable.Default>
+          <Literal x:TypeArguments="x:String">-</Literal>
+        </Variable.Default>
+      </Variable>
+    </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&#xD;&#xA;&#x9;&quot;=HYPERLINK(&quot; +&quot;&quot;&quot;&quot; + in_DownloadedFile.FullName + &quot;&quot;&quot;&quot;+ &quot;,&quot; + &quot;&quot;&quot;Resume&quot;&quot;&quot; + &quot;)&quot;,&#xD;&#xA;&#x9;DateTime.Now.ToString(&quot;MM/dd/yyyy&quot;),&#xD;&#xA;&#x9;&quot;&quot;,&#xD;&#xA;&#x9;in_Source,&#xD;&#xA;&#x9;in_Location,&#xD;&#xA;&#x9;&quot;&quot;,&#xD;&#xA;&#x9;in_ApplicantName,&#xD;&#xA;&#x9;&quot;&quot;,&#xD;&#xA;&#x9;in_PositionApplied,&#xD;&#xA;&#x9;&quot;'&quot; + in_PhoneNumber,&#xD;&#xA;&#x9;in_EmailOrSkype,&#xD;&#xA;&#x9;&quot;&quot;, &quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;, &quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&#xD;&#xA;&#x9;&quot;'&quot; +in_SourceID&#xD;&#xA;}]" DataTable="[io_DTResult]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="333.6,188" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
+    <If Condition="[in_DownloadedFile is Nothing]" sap:VirtualizedContainerService.HintSize="589.6,312" sap2010:WorkflowViewState.IdRef="If_1">
+      <If.Then>
+        <Sequence sap:VirtualizedContainerService.HintSize="241.6,84.8" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence sap:VirtualizedContainerService.HintSize="304,152.8" sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Assign sap:VirtualizedContainerService.HintSize="262.4,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[resumePath]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">["=HYPERLINK(" +"""" + in_DownloadedFile.FullName + """"+ "," + """Resume""" + ")"]</InArgument>
+            </Assign.Value>
+          </Assign>
+        </Sequence>
+      </If.Else>
+    </If>
+    <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&#xD;&#xA;&#x9;resumePath,&#xD;&#xA;&#x9;DateTime.Now.ToString(&quot;MM/dd/yyyy&quot;),&#xD;&#xA;&#x9;&quot;&quot;,&#xD;&#xA;&#x9;in_Source,&#xD;&#xA;&#x9;in_Location,&#xD;&#xA;&#x9;&quot;&quot;,&#xD;&#xA;&#x9;in_ApplicantName,&#xD;&#xA;&#x9;&quot;&quot;,&#xD;&#xA;&#x9;in_PositionApplied,&#xD;&#xA;&#x9;&quot;'&quot; + in_PhoneNumber,&#xD;&#xA;&#x9;in_EmailOrSkype,&#xD;&#xA;&#x9;&quot;&quot;, &quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;, &quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&#xD;&#xA;&#x9;&quot;'&quot; +in_SourceID&#xD;&#xA;}]" DataTable="[io_DTResult]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="589.6,188" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
   </Sequence>
 </Activity>
