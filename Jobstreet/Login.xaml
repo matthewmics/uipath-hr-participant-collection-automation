@@ -5,7 +5,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>892,2614.4</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1071,2661</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Login_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="62">
@@ -80,7 +80,7 @@
       <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence DisplayName="Login" sap:VirtualizedContainerService.HintSize="676.8,2549.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Login" sap:VirtualizedContainerService.HintSize="679,2596" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="ss:SecureString" Name="password" />
       <Variable x:TypeArguments="x:String" Name="username" />
@@ -93,8 +93,8 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <p:GetSecureCredential CredentialType="Generic" DisplayName="Get Secure Credentials" sap:VirtualizedContainerService.HintSize="635.2,80.8" sap2010:WorkflowViewState.IdRef="GetSecureCredential_1" Password="[password]" PersistanceType="Enterprise" Result="[credentialsFetched]" Target="[credentialName]" Username="[username]" />
-    <If Condition="[not credentialsFetched]" DisplayName="If Credentials not fetched" sap:VirtualizedContainerService.HintSize="635.2,468.8" sap2010:WorkflowViewState.IdRef="If_1">
+    <p:GetSecureCredential CredentialType="Generic" DisplayName="Get Secure Credentials" sap:VirtualizedContainerService.HintSize="637,79" sap2010:WorkflowViewState.IdRef="GetSecureCredential_1" Password="[password]" PersistanceType="Enterprise" Result="[credentialsFetched]" Target="[credentialName]" Username="[username]" />
+    <If Condition="[not credentialsFetched]" DisplayName="If Credentials not fetched" sap:VirtualizedContainerService.HintSize="637,463" sap2010:WorkflowViewState.IdRef="If_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -102,33 +102,34 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <If.Then>
-        <Sequence DisplayName="Request Credentials from user" sap:VirtualizedContainerService.HintSize="324.8,289.6" sap2010:WorkflowViewState.IdRef="Sequence_4">
+        <Sequence DisplayName="Request Credentials from user" sap:VirtualizedContainerService.HintSize="326,286" sap2010:WorkflowViewState.IdRef="Sequence_4">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">False</x:Boolean>
               <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <p:RequestCredential Password="{x:Null}" DisplayName="Request Credentials" sap:VirtualizedContainerService.HintSize="283.2,22.4" sap2010:WorkflowViewState.IdRef="RequestCredential_1" Message="Enter Jobstreet username and password" PasswordSecureString="[password]" Title="Jobstreet Credentials" Username="[username]" />
-          <p:AddCredential Password="{x:Null}" CredentialType="Generic" DisplayName="Add Credentials" sap:VirtualizedContainerService.HintSize="283.2,134.4" sap2010:WorkflowViewState.IdRef="AddCredential_1" PasswordSecureString="[password]" PersistanceType="Enterprise" Target="[credentialName]" Username="[username]" />
+          <p:RequestCredential Password="{x:Null}" DisplayName="Request Credentials" sap:VirtualizedContainerService.HintSize="284,22" sap2010:WorkflowViewState.IdRef="RequestCredential_1" Message="Enter Jobstreet username and password" PasswordSecureString="[password]" Title="Jobstreet Credentials" Username="[username]" />
+          <p:AddCredential Password="{x:Null}" CredentialType="Generic" DisplayName="Add Credentials" sap:VirtualizedContainerService.HintSize="284,132" sap2010:WorkflowViewState.IdRef="AddCredential_1" PasswordSecureString="[password]" PersistanceType="Enterprise" Target="[credentialName]" Username="[username]" />
         </Sequence>
       </If.Then>
     </If>
-    <ui:OpenBrowser CommunicationMethod="{x:Null}" Hidden="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Open Browser" sap:VirtualizedContainerService.HintSize="635.2,1827.2" sap2010:WorkflowViewState.IdRef="OpenBrowser_1" Url="[in_JobstreetURL + &quot;login&quot;]">
+    <ui:OpenBrowser CommunicationMethod="{x:Null}" Hidden="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Open Browser" sap:VirtualizedContainerService.HintSize="637,1882" sap2010:WorkflowViewState.IdRef="OpenBrowser_1" Url="[in_JobstreetURL + &quot;login&quot;]">
       <ui:OpenBrowser.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
           </ActivityAction.Argument>
-          <ui:InterruptibleWhile Condition="True" DisplayName="While" sap:VirtualizedContainerService.HintSize="601.6,1724.8" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_2">
+          <ui:InterruptibleWhile Condition="True" DisplayName="While" sap:VirtualizedContainerService.HintSize="603,1781" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_2">
             <ui:InterruptibleWhile.Body>
-              <Sequence DisplayName="Do Login" sap:VirtualizedContainerService.HintSize="566.4,1557.6" sap2010:WorkflowViewState.IdRef="Sequence_12">
+              <Sequence DisplayName="Do Login" sap:VirtualizedContainerService.HintSize="567,1616" sap2010:WorkflowViewState.IdRef="Sequence_12">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DelayBefore="1000" DisplayName="Type Username" EmptyField="True" sap:VirtualizedContainerService.HintSize="524.8,135.2" sap2010:WorkflowViewState.IdRef="TypeInto_2" SimulateType="True" Text="[username]">
+                <ui:MaximizeWindow Window="{x:Null}" DisplayName="Maximize Window" sap:VirtualizedContainerService.HintSize="525,22" sap2010:WorkflowViewState.IdRef="MaximizeWindow_1" />
+                <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DelayBefore="1000" DisplayName="Type Username" EmptyField="True" sap:VirtualizedContainerService.HintSize="525,134" sap2010:WorkflowViewState.IdRef="TypeInto_2" SimulateType="True" Text="[username]">
                   <ui:TypeInto.Target>
                     <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="130e53dc-8fcb-4992-956c-9a3cbd63887c" InformativeScreenshot="1d605ceaf5acdbcaa7a88783fde09abf" Selector="&lt;html app='chrome.exe' title='SiVA Recruitment Centre' /&gt;&lt;webctrl tag='INPUT' /&gt;">
                       <ui:Target.TimeoutMS>
@@ -140,7 +141,7 @@
                     </ui:Target>
                   </ui:TypeInto.Target>
                 </ui:TypeInto>
-                <ui:TypeSecureText AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Type Secure Text 'INPUT  fieldPassword'" EmptyField="True" sap:VirtualizedContainerService.HintSize="524.8,107.2" sap2010:WorkflowViewState.IdRef="TypeSecureText_2" SecureText="[password]" SimulateType="True">
+                <ui:TypeSecureText AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Type Secure Text 'INPUT  fieldPassword'" EmptyField="True" sap:VirtualizedContainerService.HintSize="525,106" sap2010:WorkflowViewState.IdRef="TypeSecureText_2" SecureText="[password]" SimulateType="True">
                   <ui:TypeSecureText.Target>
                     <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="24260eda-f6ad-481a-8dfd-8647de7741cb" InformativeScreenshot="72dca2113e42b07a11353a7c2e733dac" Selector="&lt;html app='chrome.exe' title='SiVA Recruitment Centre' /&gt;&lt;webctrl tag='INPUT' type='password' /&gt;">
                       <ui:Target.TimeoutMS>

@@ -8,7 +8,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>802.4,3925.6</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1071,3891</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ExtractJobItems_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg1:List x:TypeArguments="x:String" Capacity="29">
@@ -73,25 +73,20 @@
       <AssemblyReference>UiPath.Mail</AssemblyReference>
       <AssemblyReference>UiPath.OCR.Activities.Design</AssemblyReference>
       <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg1:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ExtractJobItems" sap:VirtualizedContainerService.HintSize="812.8,3860.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ExtractJobItems" sap:VirtualizedContainerService.HintSize="816,3826" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
-      <Variable x:TypeArguments="x:Int32" Name="thdCtr">
-        <Variable.Default>
-          <Literal x:TypeArguments="x:Int32" Value="1" />
-        </Variable.Default>
-      </Variable>
+      <Variable x:TypeArguments="x:Int32" Default="1" Name="thdCtr" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg1:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg1:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <If Condition="[in_UnitTest]" DisplayName="If Unit Test" sap:VirtualizedContainerService.HintSize="771.2,239.2" sap2010:WorkflowViewState.IdRef="If_1">
+    <If Condition="[in_UnitTest]" DisplayName="If Unit Test" sap:VirtualizedContainerService.HintSize="774,237" sap2010:WorkflowViewState.IdRef="If_1">
       <If.Then>
-        <Assign sap:VirtualizedContainerService.HintSize="262.4,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+        <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_1">
           <Assign.To>
             <OutArgument x:TypeArguments="scg:LinkedList(s:String[])">[io_WorkItems]</OutArgument>
           </Assign.To>
@@ -101,13 +96,13 @@
         </Assign>
       </If.Then>
     </If>
-    <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Attach Browser 'chrome.exe Candidates'" sap:VirtualizedContainerService.HintSize="771.2,3488.8" sap2010:WorkflowViewState.IdRef="BrowserScope_1" Selector="&lt;html app='chrome.exe' title='Candidates | Indeed.com' /&gt;">
+    <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Attach Browser 'chrome.exe Candidates'" sap:VirtualizedContainerService.HintSize="774,3457" sap2010:WorkflowViewState.IdRef="BrowserScope_1" Selector="&lt;html app='chrome.exe' title='Candidates | Indeed.com' /&gt;">
       <ui:BrowserScope.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
           </ActivityAction.Argument>
-          <Sequence sap:VirtualizedContainerService.HintSize="737.6,3380" sap2010:WorkflowViewState.IdRef="Sequence_5">
+          <Sequence sap:VirtualizedContainerService.HintSize="740,3349" sap2010:WorkflowViewState.IdRef="Sequence_5">
             <Sequence.Variables>
               <Variable x:TypeArguments="ui:UiElement" Name="elementLoading" />
             </Sequence.Variables>
@@ -116,7 +111,7 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg1:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:WaitUiElementAppear ContinueOnError="True" DisplayName="Find Element" FoundElement="[elementLoading]" sap:VirtualizedContainerService.HintSize="696,68.8" sap2010:WorkflowViewState.IdRef="WaitUiElementAppear_2" WaitActive="True" WaitVisible="True">
+            <ui:WaitUiElementAppear ContinueOnError="True" DisplayName="Find Element" FoundElement="[elementLoading]" sap:VirtualizedContainerService.HintSize="698,68" sap2010:WorkflowViewState.IdRef="WaitUiElementAppear_2" WaitActive="True" WaitVisible="True">
               <ui:WaitUiElementAppear.Target>
                 <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="fc3103b5-5902-4ad9-abe8-871e5c91ca6c" Selector="&lt;html app='chrome.exe' title='Candidates | Indeed.com' /&gt;&lt;webctrl css-selector='.HanselLoadingState-icon' /&gt;" TimeoutMS="3000">
                   <ui:Target.WaitForReady>
@@ -125,9 +120,9 @@
                 </ui:Target>
               </ui:WaitUiElementAppear.Target>
             </ui:WaitUiElementAppear>
-            <ui:InterruptibleWhile DisplayName="While" sap:VirtualizedContainerService.HintSize="696,588" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_3">
+            <ui:InterruptibleWhile DisplayName="While" sap:VirtualizedContainerService.HintSize="698,582" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_3">
               <ui:InterruptibleWhile.Body>
-                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="524.8,420.8" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="526,417" sap2010:WorkflowViewState.IdRef="Sequence_8">
                   <Sequence.Variables>
                     <Variable x:TypeArguments="x:Boolean" Name="loadingExists" />
                   </Sequence.Variables>
@@ -136,7 +131,7 @@
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg1:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:UiElementExists DisplayName="Element Exists" Exists="[loadingExists]" sap:VirtualizedContainerService.HintSize="483.2,68.8" sap2010:WorkflowViewState.IdRef="UiElementExists_2">
+                  <ui:UiElementExists DisplayName="Element Exists" Exists="[loadingExists]" sap:VirtualizedContainerService.HintSize="484,68" sap2010:WorkflowViewState.IdRef="UiElementExists_2">
                     <ui:UiElementExists.Target>
                       <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="bbdc5c76-12ba-477e-85df-7c20c4464ffe" Selector="&lt;html app='chrome.exe' title='Candidates | Indeed.com' /&gt;&lt;webctrl css-selector='.HanselLoadingState-icon' /&gt;" TimeoutMS="500">
                         <ui:Target.WaitForReady>
@@ -145,12 +140,12 @@
                       </ui:Target>
                     </ui:UiElementExists.Target>
                   </ui:UiElementExists>
-                  <If Condition="[loadingExists]" sap:VirtualizedContainerService.HintSize="483.2,219.2" sap2010:WorkflowViewState.IdRef="If_2">
+                  <If Condition="[loadingExists]" sap:VirtualizedContainerService.HintSize="484,217" sap2010:WorkflowViewState.IdRef="If_2">
                     <If.Then>
-                      <Delay Duration="[TimeSpan.FromMilliseconds(250)]" sap:VirtualizedContainerService.HintSize="200,22.4" sap2010:WorkflowViewState.IdRef="Delay_2" />
+                      <Delay Duration="[TimeSpan.FromMilliseconds(250)]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Delay_2" />
                     </If.Then>
                     <If.Else>
-                      <ui:Break sap:VirtualizedContainerService.HintSize="200,22.4" sap2010:WorkflowViewState.IdRef="Break_1" />
+                      <ui:Break sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Break_1" />
                     </If.Else>
                   </If>
                 </Sequence>
@@ -159,9 +154,9 @@
                 <Literal x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="Literal`1_1" Value="True" />
               </ui:InterruptibleWhile.Condition>
             </ui:InterruptibleWhile>
-            <ui:InterruptibleWhile DisplayName="While" sap:VirtualizedContainerService.HintSize="696,2550.4" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1">
+            <ui:InterruptibleWhile DisplayName="While" sap:VirtualizedContainerService.HintSize="698,2527" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1">
               <ui:InterruptibleWhile.Body>
-                <Sequence DisplayName="Body of loop" sap:VirtualizedContainerService.HintSize="660.8,2383.2" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                <Sequence DisplayName="Body of loop" sap:VirtualizedContainerService.HintSize="662,2362" sap2010:WorkflowViewState.IdRef="Sequence_3">
                   <Sequence.Variables>
                     <Variable x:TypeArguments="scg1:IEnumerable(ui:UiElement)" Name="applicants" />
                     <Variable x:TypeArguments="ui:UiElement" Default="[Nothing]" Name="lnkNext" />
@@ -171,7 +166,7 @@
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg1:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:FindChildren Children="[applicants]" DisplayName="Find Children" Filter="&lt;webctrl css-selector='.cpqap-CandidateCell-name-text' /&gt;" sap:VirtualizedContainerService.HintSize="619.2,68.8" sap2010:WorkflowViewState.IdRef="FindChildren_1" Scope="FIND_DESCENDANTS">
+                  <ui:FindChildren Children="[applicants]" DisplayName="Find Children" Filter="&lt;webctrl css-selector='.cpqap-CandidateCell-name-text' /&gt;" sap:VirtualizedContainerService.HintSize="620,68" sap2010:WorkflowViewState.IdRef="FindChildren_1" Scope="FIND_DESCENDANTS">
                     <ui:FindChildren.Target>
                       <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="02dd1c7b-e359-40e8-bfbf-019085f64c65" Selector="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' idx='2' parentid='cpqap-pageSubtab-applicants' tag='DIV' /&gt;" WaitForReady="COMPLETE">
                         <ui:Target.TimeoutMS>
@@ -180,13 +175,13 @@
                       </ui:Target>
                     </ui:FindChildren.Target>
                   </ui:FindChildren>
-                  <ui:ForEach x:TypeArguments="ui:UiElement" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="619.2,1611.2" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[applicants]">
+                  <ui:ForEach x:TypeArguments="ui:UiElement" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="620,1595" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[applicants]">
                     <ui:ForEach.Body>
                       <ActivityAction x:TypeArguments="ui:UiElement">
                         <ActivityAction.Argument>
                           <DelegateInArgument x:TypeArguments="ui:UiElement" Name="item" />
                         </ActivityAction.Argument>
-                        <Sequence DisplayName="Get item info" sap:VirtualizedContainerService.HintSize="524.8,1486.4" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                        <Sequence DisplayName="Get item info" sap:VirtualizedContainerService.HintSize="526,1472" sap2010:WorkflowViewState.IdRef="Sequence_4">
                           <Sequence.Variables>
                             <Variable x:TypeArguments="x:String" Name="applicantID" />
                             <Variable x:TypeArguments="x:Boolean" Name="isSourceExists" />
@@ -196,7 +191,7 @@
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                             </scg1:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="data-tn-entityid" DisplayName="Get Attribute" sap:VirtualizedContainerService.HintSize="483.2,166.4" sap2010:WorkflowViewState.IdRef="GetAttribute_1">
+                          <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="data-tn-entityid" DisplayName="Get Attribute" sap:VirtualizedContainerService.HintSize="484,164" sap2010:WorkflowViewState.IdRef="GetAttribute_1">
                             <ui:GetAttribute.Result>
                               <OutArgument x:TypeArguments="x:String">[applicantID]</OutArgument>
                             </ui:GetAttribute.Result>
@@ -211,7 +206,7 @@
                               </ui:Target>
                             </ui:GetAttribute.Target>
                           </ui:GetAttribute>
-                          <Assign sap:VirtualizedContainerService.HintSize="483.2,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+                          <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_2">
                             <Assign.To>
                               <OutArgument x:TypeArguments="x:String">[applicantID]</OutArgument>
                             </Assign.To>
@@ -219,28 +214,22 @@
                               <InArgument x:TypeArguments="x:String">[applicantID.Split(","c)(0)]</InArgument>
                             </Assign.Value>
                           </Assign>
-                          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke ExistsSource workflow" sap:VirtualizedContainerService.HintSize="483.2,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="Indeed\ExistsSource.xaml">
+                          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke ExistsSource workflow" sap:VirtualizedContainerService.HintSize="484,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="Indeed\ExistsSource.xaml">
                             <ui:InvokeWorkflowFile.Arguments>
-                              <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DTIndeed">
-                                <mva:VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="in_DTIndeed" />
-                              </InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_SourceID">
-                                <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="applicantID" />
-                              </InArgument>
-                              <OutArgument x:TypeArguments="x:Boolean" x:Key="out_Result">
-                                <mva:VisualBasicReference x:TypeArguments="x:Boolean" ExpressionText="isSourceExists" />
-                              </OutArgument>
+                              <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DTIndeed">[in_DTIndeed]</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_SourceID">[applicantID]</InArgument>
+                              <OutArgument x:TypeArguments="x:Boolean" x:Key="out_Result">[isSourceExists]</OutArgument>
                             </ui:InvokeWorkflowFile.Arguments>
                           </ui:InvokeWorkflowFile>
-                          <If Condition="[isSourceExists]" sap:VirtualizedContainerService.HintSize="483.2,294.4" sap2010:WorkflowViewState.IdRef="If_4">
+                          <If Condition="[isSourceExists]" sap:VirtualizedContainerService.HintSize="484,290" sap2010:WorkflowViewState.IdRef="If_4">
                             <If.Then>
-                              <Sequence sap:VirtualizedContainerService.HintSize="241.6,115.2" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                              <Sequence sap:VirtualizedContainerService.HintSize="242,114" sap2010:WorkflowViewState.IdRef="Sequence_10">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg1:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                   </scg1:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
-                                <ui:Continue sap:VirtualizedContainerService.HintSize="200,22.4" sap2010:WorkflowViewState.IdRef="Continue_1" />
+                                <ui:Continue sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Continue_1" />
                               </Sequence>
                             </If.Then>
                             <If.Else>
@@ -253,29 +242,21 @@
                               </Sequence>
                             </If.Else>
                           </If>
-                          <ui:InvokeCode ContinueOnError="{x:Null}" Code="wl.AddLast(New String() {&quot;Indeed&quot;, jobID})" DisplayName="Add Work Item" sap:VirtualizedContainerService.HintSize="483.2,164.8" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+                          <ui:InvokeCode ContinueOnError="{x:Null}" Code="wl.AddLast(New String() {&quot;Indeed&quot;, jobID})" DisplayName="Add Work Item" sap:VirtualizedContainerService.HintSize="484,164" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
                             <ui:InvokeCode.Arguments>
                               <InOutArgument x:TypeArguments="scg:LinkedList(s:String[])" x:Key="wl">[io_WorkItems]</InOutArgument>
                               <InArgument x:TypeArguments="x:String" x:Key="jobID">[applicantID]</InArgument>
                             </ui:InvokeCode.Arguments>
                           </ui:InvokeCode>
-                          <Assign sap:VirtualizedContainerService.HintSize="483.2,60" sap2010:WorkflowViewState.IdRef="Assign_3">
-                            <Assign.To>
-                              <OutArgument x:TypeArguments="x:Int32">[thdCtr]</OutArgument>
-                            </Assign.To>
-                            <Assign.Value>
-                              <InArgument x:TypeArguments="x:Int32">[thdCtr + 1]</InArgument>
-                            </Assign.Value>
-                          </Assign>
-                          <If Condition="[thdCtr &gt;= in_CollectionThreshold]" sap:VirtualizedContainerService.HintSize="483.2,294.4" sap2010:WorkflowViewState.IdRef="If_5">
+                          <If Condition="[thdCtr &gt;= in_CollectionThreshold]" sap:VirtualizedContainerService.HintSize="484,290" sap2010:WorkflowViewState.IdRef="If_5">
                             <If.Then>
-                              <Sequence sap:VirtualizedContainerService.HintSize="241.6,115.2" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                              <Sequence sap:VirtualizedContainerService.HintSize="242,114" sap2010:WorkflowViewState.IdRef="Sequence_12">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg1:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                   </scg1:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
-                                <ui:Break sap:VirtualizedContainerService.HintSize="200,22.4" sap2010:WorkflowViewState.IdRef="Break_3" />
+                                <ui:Break sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Break_3" />
                               </Sequence>
                             </If.Then>
                             <If.Else>
@@ -288,11 +269,19 @@
                               </Sequence>
                             </If.Else>
                           </If>
+                          <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Int32">[thdCtr]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Int32">[thdCtr + 1]</InArgument>
+                            </Assign.Value>
+                          </Assign>
                         </Sequence>
                       </ActivityAction>
                     </ui:ForEach.Body>
                   </ui:ForEach>
-                  <ui:WaitUiElementAppear WaitActive="{x:Null}" WaitVisible="{x:Null}" ContinueOnError="True" DisplayName="Find Element 'A'" FoundElement="[lnkNext]" sap:VirtualizedContainerService.HintSize="619.2,107.2" sap2010:WorkflowViewState.IdRef="WaitUiElementAppear_3">
+                  <ui:WaitUiElementAppear WaitActive="{x:Null}" WaitVisible="{x:Null}" ContinueOnError="True" DisplayName="Find Element 'A'" FoundElement="[lnkNext]" sap:VirtualizedContainerService.HintSize="620,106" sap2010:WorkflowViewState.IdRef="WaitUiElementAppear_3">
                     <ui:WaitUiElementAppear.Target>
                       <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="32d34c74-2549-45a3-8def-d4530f3afac2" InformativeScreenshot="ee8190a83103f7044f78102e9991f6ce" Selector="&lt;webctrl aaname='Next' aria-role='button' tag='A' /&gt;" TimeoutMS="1000">
                         <ui:Target.WaitForReady>
@@ -301,7 +290,7 @@
                       </ui:Target>
                     </ui:WaitUiElementAppear.Target>
                   </ui:WaitUiElementAppear>
-                  <If Condition="[lnkNext is Nothing Or thdCtr &gt;= in_CollectionThreshold]" sap:VirtualizedContainerService.HintSize="619.2,383.2" sap2010:WorkflowViewState.IdRef="If_3">
+                  <If Condition="[lnkNext is Nothing Or thdCtr &gt;= in_CollectionThreshold]" sap:VirtualizedContainerService.HintSize="620,381" sap2010:WorkflowViewState.IdRef="If_3">
                     <If.Then>
                       <ui:Break sap:VirtualizedContainerService.HintSize="200,22.4" sap2010:WorkflowViewState.IdRef="Break_2" />
                     </If.Then>

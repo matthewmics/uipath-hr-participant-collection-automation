@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="ExtractApplicantInfo" this:ExtractApplicantInfo.in_UnitTest="True" this:ExtractApplicantInfo.in_ApplicantID="6311" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:si="clr-namespace:System.IO;assembly=mscorlib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="ExtractApplicantInfo" this:ExtractApplicantInfo.in_UnitTest="True" this:ExtractApplicantInfo.in_ApplicantID="6311" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:si="clr-namespace:System.IO;assembly=mscorlib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_UnitTest" Type="InArgument(x:Boolean)" />
     <x:Property Name="in_ApplicantID" Type="InArgument(x:String)" />
@@ -7,7 +7,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>920,1756</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1071,2166</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ExtractApplicantInfo_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="56">
@@ -72,31 +72,30 @@
       <AssemblyReference>UiPath.OCR.Activities.Design</AssemblyReference>
       <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ExtractApplicantInfo" sap:VirtualizedContainerService.HintSize="550.4,1691.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ExtractApplicantInfo" sap:VirtualizedContainerService.HintSize="632,2101" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <If Condition="[in_UnitTest]" sap:VirtualizedContainerService.HintSize="508.8,292.8" sap2010:WorkflowViewState.IdRef="If_1">
+    <If Condition="[in_UnitTest]" sap:VirtualizedContainerService.HintSize="590,289" sap2010:WorkflowViewState.IdRef="If_1">
       <If.Then>
-        <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke CreateDataTableMasterList workflow" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="Helpers\CreateDataTableMasterList.xaml">
+        <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke CreateDataTableMasterList workflow" sap:VirtualizedContainerService.HintSize="334,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="Helpers\CreateDataTableMasterList.xaml">
           <ui:InvokeWorkflowFile.Arguments>
             <InOutArgument x:TypeArguments="sd:DataTable" x:Key="out_DTResult">[io_DTResult]</InOutArgument>
           </ui:InvokeWorkflowFile.Arguments>
         </ui:InvokeWorkflowFile>
       </If.Then>
     </If>
-    <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Attach Browser 'chrome.exe Update'" sap:VirtualizedContainerService.HintSize="508.8,1265.6" sap2010:WorkflowViewState.IdRef="BrowserScope_1" InformativeScreenshot="b0fc46f7ca6cd7d881c54f25ee4e8cb7" Selector="&lt;html app='chrome.exe' title='*Connext Global Solutions — WordPress' /&gt;">
+    <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Attach Browser 'chrome.exe Update'" sap:VirtualizedContainerService.HintSize="590,1680" sap2010:WorkflowViewState.IdRef="BrowserScope_1" InformativeScreenshot="b0fc46f7ca6cd7d881c54f25ee4e8cb7" Selector="&lt;html app='chrome.exe' title='*Connext Global Solutions — WordPress' /&gt;">
       <ui:BrowserScope.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="475.2,1118.4" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="556,1534" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:String" Name="applicantName" />
               <Variable x:TypeArguments="x:String" Name="phoneNumber" />
@@ -108,7 +107,7 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Get applicant name" sap:VirtualizedContainerService.HintSize="433.6,107.2" sap2010:WorkflowViewState.IdRef="GetValue_1">
+            <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Get applicant name" sap:VirtualizedContainerService.HintSize="514,106" sap2010:WorkflowViewState.IdRef="GetValue_1">
               <ui:GetValue.Target>
                 <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="d3b64494-4033-464f-91fe-85ce15ff1764" InformativeScreenshot="81b7d65af76a1e8688b7666b88c4e467" Selector="&lt;html app='chrome.exe' title='Update entry ‹ Connext Global Solutions — WordPress' /&gt;&lt;webctrl css-selector='.jobs-wrapper &amp;gt; div &amp;gt; div:nth-child(1) &amp;gt; div:nth-child(2)' /&gt;" WaitForReady="COMPLETE">
                   <ui:Target.TimeoutMS>
@@ -120,7 +119,7 @@
                 <OutArgument x:TypeArguments="x:String">[applicantName]</OutArgument>
               </ui:GetValue.Value>
             </ui:GetValue>
-            <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Get applicant phone" sap:VirtualizedContainerService.HintSize="433.6,107.2" sap2010:WorkflowViewState.IdRef="GetValue_2">
+            <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Get applicant phone" sap:VirtualizedContainerService.HintSize="514,106" sap2010:WorkflowViewState.IdRef="GetValue_2">
               <ui:GetValue.Target>
                 <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="10331eaf-f04f-4df1-8290-7f0bbe47bd77" InformativeScreenshot="6aa569bf4c50b353368ca5aac5efeb5d" Selector="&lt;webctrl css-selector='.jobs-wrapper &amp;gt; div &amp;gt; div:nth-child(3) &amp;gt; div:nth-child(2)' /&gt;">
                   <ui:Target.TimeoutMS>
@@ -135,7 +134,7 @@
                 <OutArgument x:TypeArguments="x:String">[phoneNumber]</OutArgument>
               </ui:GetValue.Value>
             </ui:GetValue>
-            <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="value" DisplayName="Get position title" sap:VirtualizedContainerService.HintSize="433.6,166.4" sap2010:WorkflowViewState.IdRef="GetAttribute_1">
+            <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="value" DisplayName="Get position title" sap:VirtualizedContainerService.HintSize="514,164" sap2010:WorkflowViewState.IdRef="GetAttribute_1">
               <ui:GetAttribute.Result>
                 <OutArgument x:TypeArguments="x:String">[positionTitle]</OutArgument>
               </ui:GetAttribute.Result>
@@ -150,70 +149,83 @@
                 </ui:Target>
               </ui:GetAttribute.Target>
             </ui:GetAttribute>
-            <ui:GetLastDownloadedFile Timeout="{x:Null}" DisplayName="Wait for Download" DownloadFolder="[Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), &quot;Downloads&quot;)]" File="[downloadedFile]" sap:VirtualizedContainerService.HintSize="433.6,371.2" sap2010:WorkflowViewState.IdRef="GetLastDownloadedFile_1">
-              <ui:GetLastDownloadedFile.Body>
-                <ActivityAction>
-                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="375.2,161.6" sap2010:WorkflowViewState.IdRef="Sequence_3">
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                    <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" ClickType="CLICK_SINGLE" sap:VirtualizedContainerService.HintSize="333.6,68.8" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT" SimulateClick="True">
-                      <ui:Click.CursorPosition>
-                        <ui:CursorPosition Position="Center">
-                          <ui:CursorPosition.OffsetX>
-                            <InArgument x:TypeArguments="x:Int32" />
-                          </ui:CursorPosition.OffsetX>
-                          <ui:CursorPosition.OffsetY>
-                            <InArgument x:TypeArguments="x:Int32" />
-                          </ui:CursorPosition.OffsetY>
-                        </ui:CursorPosition>
-                      </ui:Click.CursorPosition>
-                      <ui:Click.Target>
-                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="11e8165e-e7fd-45d0-bdc2-a7ecc1536769" Selector="&lt;webctrl css-selector='.jobs-row-input &amp;gt; a' /&gt;">
-                          <ui:Target.TimeoutMS>
-                            <InArgument x:TypeArguments="x:Int32" />
-                          </ui:Target.TimeoutMS>
-                          <ui:Target.WaitForReady>
-                            <InArgument x:TypeArguments="ui:WaitForReady" />
-                          </ui:Target.WaitForReady>
-                        </ui:Target>
-                      </ui:Click.Target>
-                    </ui:Click>
-                  </Sequence>
-                </ActivityAction>
-              </ui:GetLastDownloadedFile.Body>
-            </ui:GetLastDownloadedFile>
-            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke AddRowToMasterList workflow" sap:VirtualizedContainerService.HintSize="433.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="Helpers\AddRowToMasterList.xaml">
+            <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="514,794" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+              <TryCatch.Try>
+                <Sequence sap:VirtualizedContainerService.HintSize="476,567" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:WaitUiElementAppear FoundElement="{x:Null}" WaitActive="{x:Null}" WaitVisible="{x:Null}" DisplayName="Find Element" sap:VirtualizedContainerService.HintSize="434,68" sap2010:WorkflowViewState.IdRef="WaitUiElementAppear_1">
+                    <ui:WaitUiElementAppear.Target>
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="a58d3319-e35f-4022-8195-70b2d34449d4" Selector="&lt;webctrl css-selector='.jobs-row-input &amp;gt; a' /&gt;" TimeoutMS="1000" WaitForReady="COMPLETE" />
+                    </ui:WaitUiElementAppear.Target>
+                  </ui:WaitUiElementAppear>
+                  <ui:GetLastDownloadedFile Timeout="{x:Null}" DisplayName="Wait for Download" DownloadFolder="[Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), &quot;Downloads&quot;)]" File="[downloadedFile]" sap:VirtualizedContainerService.HintSize="434,367" sap2010:WorkflowViewState.IdRef="GetLastDownloadedFile_1">
+                    <ui:GetLastDownloadedFile.Body>
+                      <ActivityAction>
+                        <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,160" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" ClickType="CLICK_SINGLE" sap:VirtualizedContainerService.HintSize="334,68" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT" SimulateClick="True">
+                            <ui:Click.CursorPosition>
+                              <ui:CursorPosition Position="Center">
+                                <ui:CursorPosition.OffsetX>
+                                  <InArgument x:TypeArguments="x:Int32" />
+                                </ui:CursorPosition.OffsetX>
+                                <ui:CursorPosition.OffsetY>
+                                  <InArgument x:TypeArguments="x:Int32" />
+                                </ui:CursorPosition.OffsetY>
+                              </ui:CursorPosition>
+                            </ui:Click.CursorPosition>
+                            <ui:Click.Target>
+                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="11e8165e-e7fd-45d0-bdc2-a7ecc1536769" Selector="&lt;webctrl css-selector='.jobs-row-input &amp;gt; a' /&gt;">
+                                <ui:Target.TimeoutMS>
+                                  <InArgument x:TypeArguments="x:Int32" />
+                                </ui:Target.TimeoutMS>
+                                <ui:Target.WaitForReady>
+                                  <InArgument x:TypeArguments="ui:WaitForReady" />
+                                </ui:Target.WaitForReady>
+                              </ui:Target>
+                            </ui:Click.Target>
+                          </ui:Click>
+                        </Sequence>
+                      </ActivityAction>
+                    </ui:GetLastDownloadedFile.Body>
+                  </ui:GetLastDownloadedFile>
+                </Sequence>
+              </TryCatch.Try>
+              <TryCatch.Catches>
+                <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="480,21" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ActivityAction x:TypeArguments="s:Exception">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                    </ActivityAction.Argument>
+                  </ActivityAction>
+                </Catch>
+              </TryCatch.Catches>
+            </TryCatch>
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke AddRowToMasterList workflow" sap:VirtualizedContainerService.HintSize="514,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="Helpers\AddRowToMasterList.xaml">
               <ui:InvokeWorkflowFile.Arguments>
-                <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_DTResult">
-                  <mva:VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="io_DTResult" />
-                </InOutArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="in_Location">
-                  <Literal x:TypeArguments="x:String">-</Literal>
-                </InArgument>
-                <InArgument x:TypeArguments="si:FileInfo" x:Key="in_DownloadedFile">
-                  <mva:VisualBasicValue x:TypeArguments="si:FileInfo" ExpressionText="downloadedFile" />
-                </InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="in_PositionApplied">
-                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="positionTitle" />
-                </InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="in_ApplicantName">
-                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="applicantName" />
-                </InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="in_PhoneNumber">
-                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="phoneNumber" />
-                </InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="in_SourceID">
-                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_ApplicantID" />
-                </InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="in_EmailOrSkype">
-                  <Literal x:TypeArguments="x:String">-</Literal>
-                </InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="in_Source">
-                  <Literal x:TypeArguments="x:String">WEBSITE</Literal>
-                </InArgument>
+                <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_DTResult">[io_DTResult]</InOutArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_Location">-</InArgument>
+                <InArgument x:TypeArguments="si:FileInfo" x:Key="in_DownloadedFile">[downloadedFile]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_PositionApplied">[positionTitle]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_ApplicantName">[applicantName]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_PhoneNumber">[phoneNumber]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_SourceID">[in_ApplicantID]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_EmailOrSkype">-</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_Source">WEBSITE</InArgument>
               </ui:InvokeWorkflowFile.Arguments>
             </ui:InvokeWorkflowFile>
           </Sequence>
