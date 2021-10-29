@@ -7,7 +7,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>920,2226.4</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>704.8,2226.4</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ExtractApplicantInfo_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="29">
@@ -73,7 +73,6 @@
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
       <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
       <AssemblyReference>UiPath.Mail</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="ExtractApplicantInfo" sap:VirtualizedContainerService.HintSize="550.4,2161.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
@@ -219,33 +218,15 @@
             </ui:GetLastDownloadedFile>
             <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke AddRowToMasterList workflow" sap:VirtualizedContainerService.HintSize="433.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="Helpers\AddRowToMasterList.xaml">
               <ui:InvokeWorkflowFile.Arguments>
-                <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_DTResult">
-                  <mva:VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="io_DTResult" />
-                </InOutArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="in_Location">
-                  <Literal x:TypeArguments="x:String">-</Literal>
-                </InArgument>
-                <InArgument x:TypeArguments="si:FileInfo" x:Key="in_DownloadedFile">
-                  <mva:VisualBasicValue x:TypeArguments="si:FileInfo" ExpressionText="downloadedFile" />
-                </InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="in_PositionApplied">
-                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="positionTitle" />
-                </InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="in_ApplicantName">
-                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="applicantName" />
-                </InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="in_PhoneNumber">
-                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="phoneNUmber" />
-                </InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="in_SourceID">
-                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_ApplicantID" />
-                </InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="in_EmailOrSkype">
-                  <Literal x:TypeArguments="x:String">-</Literal>
-                </InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="in_Source">
-                  <Literal x:TypeArguments="x:String">INDEED</Literal>
-                </InArgument>
+                <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_DTResult">[io_DTResult]</InOutArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_Location">-</InArgument>
+                <InArgument x:TypeArguments="si:FileInfo" x:Key="in_DownloadedFile">[downloadedFile]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_PositionApplied">[positionTitle]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_ApplicantName">[applicantName]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_PhoneNumber">[phoneNUmber]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_SourceID">[in_ApplicantID]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_EmailOrSkype">-</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_Source">INDEED</InArgument>
               </ui:InvokeWorkflowFile.Arguments>
             </ui:InvokeWorkflowFile>
           </Sequence>

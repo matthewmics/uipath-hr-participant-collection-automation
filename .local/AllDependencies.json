@@ -6294,15 +6294,15 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\User\\.nuget\\packages\\": {}
+    "C:\\Users\\matth\\.nuget\\packages\\": {}
   },
   "project": {
     "restore": {
       "projectUniqueName": "CollectJobApplicants",
       "projectName": "CollectJobApplicants",
-      "projectPath": "C:\\Users\\User\\Documents\\GitHub\\HR-RPA\\.local",
-      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\Documents\\GitHub\\HR-RPA\\.local"
+      "projectPath": "D:\\Projects\\Connext\\CollectJobApplicants\\.local",
+      "packagesPath": "C:\\Users\\matth\\.nuget\\packages\\",
+      "outputPath": "D:\\Projects\\Connext\\CollectJobApplicants\\.local"
     },
     "frameworks": {
       "net461": {
@@ -6333,7 +6333,7 @@
             "version": "[21.6.1-preview, 21.6.1-preview]"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Users\\User\\AppData\\Local\\Programs\\UiPath\\Studio\\runtime.json"
+        "runtimeIdentifierGraphPath": "C:\\Users\\matth\\AppData\\Local\\Programs\\UiPath\\Studio\\runtime.json"
       }
     },
     "runtimes": {
