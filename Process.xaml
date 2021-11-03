@@ -4,11 +4,12 @@
     <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
     <x:Property Name="io_DTResult" Type="InOutArgument(sd:DataTable)" />
     <x:Property Name="in_DTFacebookList" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="in_DTJobstreetList" Type="InArgument(sd:DataTable)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>748,816</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>749.6,1062.4</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ProcessTransaction_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="28">
@@ -76,7 +77,7 @@
       <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="538.4,751.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="538.4,997.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Int32" Name="collectionThreshold" />
     </Sequence.Variables>
@@ -95,7 +96,7 @@
         <InArgument x:TypeArguments="x:Int32">[Int32.Parse(in_Config("CollectionThreshold").ToString)]</InArgument>
       </Assign.Value>
     </Assign>
-    <Switch x:TypeArguments="x:String" DisplayName="Switch" Expression="[in_TransactionItem(0)]" sap:VirtualizedContainerService.HintSize="496.8,370.4" sap2010:WorkflowViewState.IdRef="Switch`1_1">
+    <Switch x:TypeArguments="x:String" DisplayName="Switch" Expression="[in_TransactionItem(0)]" sap:VirtualizedContainerService.HintSize="496.8,616.8" sap2010:WorkflowViewState.IdRef="Switch`1_1">
       <Sequence x:Key="Jobstreet" sap:VirtualizedContainerService.HintSize="375.2,360" sap2010:WorkflowViewState.IdRef="Sequence_3">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -110,8 +111,15 @@
         </ui:InvokeWorkflowFile>
         <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke ExtractApplicantInfo2 workflow" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="Jobstreet\ExtractApplicantInfo2.xaml">
           <ui:InvokeWorkflowFile.Arguments>
-            <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_DTResult">[io_DTResult]</InOutArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="in_JobID">[in_TransactionItem(1)]</InArgument>
+            <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_DTResult">
+              <mva:VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="io_DTResult" />
+            </InOutArgument>
+            <InArgument x:TypeArguments="x:String" x:Key="in_JobID">
+              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_TransactionItem(1)" />
+            </InArgument>
+            <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DTList">
+              <mva:VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="in_DTJobstreetList" />
+            </InArgument>
           </ui:InvokeWorkflowFile.Arguments>
         </ui:InvokeWorkflowFile>
       </Sequence>
@@ -137,27 +145,13 @@
       </Sequence>
       <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" x:Key="Facebook" DisplayName="Invoke GetApplicants workflow" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="Facebook\GetApplicants.xaml">
         <ui:InvokeWorkflowFile.Arguments>
-          <InArgument x:TypeArguments="x:Int32" x:Key="in_Test">
-            <mva:VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="Int32.Parse(in_Config(&quot;Test&quot;).ToString)" />
-          </InArgument>
-          <InArgument x:TypeArguments="x:Boolean" x:Key="in_UnitTest">
-            <Literal x:TypeArguments="x:Boolean" />
-          </InArgument>
-          <InArgument x:TypeArguments="x:String" x:Key="in_OutputFolderResume">
-            <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), &quot;RPA_RESUME&quot;)" />
-          </InArgument>
-          <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_DTResult">
-            <mva:VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="io_DTResult" />
-          </InOutArgument>
-          <InArgument x:TypeArguments="x:Int32" x:Key="in_CollectionThreshold">
-            <mva:VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="collectionThreshold" />
-          </InArgument>
-          <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DTFacebookList">
-            <mva:VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="in_DTFacebookList" />
-          </InArgument>
-          <InArgument x:TypeArguments="x:String" x:Key="in_TargetParticipant">
-            <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_TransactionItem(1)" />
-          </InArgument>
+          <InArgument x:TypeArguments="x:Int32" x:Key="in_Test">[Int32.Parse(in_Config("Test").ToString)]</InArgument>
+          <InArgument x:TypeArguments="x:Boolean" x:Key="in_UnitTest">False</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_OutputFolderResume">[Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "RPA_RESUME")]</InArgument>
+          <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_DTResult">[io_DTResult]</InOutArgument>
+          <InArgument x:TypeArguments="x:Int32" x:Key="in_CollectionThreshold">[collectionThreshold]</InArgument>
+          <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DTFacebookList">[in_DTFacebookList]</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_TargetParticipant">[in_TransactionItem(1)]</InArgument>
         </ui:InvokeWorkflowFile.Arguments>
       </ui:InvokeWorkflowFile>
       <Sequence x:Key="Website" sap:VirtualizedContainerService.HintSize="375.2,360" sap2010:WorkflowViewState.IdRef="Sequence_4">

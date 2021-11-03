@@ -7,7 +7,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>748,3267.2</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>749.6,2860.8</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ExtractApplicantInfo_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="29">
@@ -73,15 +73,16 @@
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
       <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
       <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ExtractApplicantInfo" sap:VirtualizedContainerService.HintSize="628.8,3202.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ExtractApplicantInfo" sap:VirtualizedContainerService.HintSize="595.2,2796" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <If Condition="[in_UnitTest]" sap:VirtualizedContainerService.HintSize="587.2,292.8" sap2010:WorkflowViewState.IdRef="If_1">
+    <If Condition="[in_UnitTest]" sap:VirtualizedContainerService.HintSize="553.6,292.8" sap2010:WorkflowViewState.IdRef="If_1">
       <If.Then>
         <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke CreateDataTableMasterList workflow" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="Helpers\CreateDataTableMasterList.xaml">
           <ui:InvokeWorkflowFile.Arguments>
@@ -90,26 +91,31 @@
         </ui:InvokeWorkflowFile>
       </If.Then>
     </If>
-    <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Attach Browser 'chrome.exe Candidates'" sap:VirtualizedContainerService.HintSize="587.2,2776.8" sap2010:WorkflowViewState.IdRef="BrowserScope_1" Selector="&lt;html app='chrome.exe' title='Candidates | Indeed.com' /&gt;">
+    <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Attach Browser 'chrome.exe Candidates'" sap:VirtualizedContainerService.HintSize="553.6,2370.4" sap2010:WorkflowViewState.IdRef="BrowserScope_1" Selector="&lt;html app='chrome.exe' title='Candidates | Indeed.com' /&gt;">
       <ui:BrowserScope.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="553.6,2668" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="520,2261.6" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:String" Name="applicantName" />
               <Variable x:TypeArguments="x:String" Name="positionTitle" />
               <Variable x:TypeArguments="x:String" Name="phoneNUmber" />
               <Variable x:TypeArguments="x:String" Name="fileNameResume" />
               <Variable x:TypeArguments="si:FileInfo" Name="downloadedFile" />
+              <Variable x:TypeArguments="x:String" Name="location">
+                <Variable.Default>
+                  <Literal x:TypeArguments="x:String">-</Literal>
+                </Variable.Default>
+              </Variable>
             </Sequence.Variables>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="innerHTML" DisplayName="Get Applicant name" sap:VirtualizedContainerService.HintSize="512,166.4" sap2010:WorkflowViewState.IdRef="GetAttribute_1">
+            <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="innerHTML" DisplayName="Get Applicant name" sap:VirtualizedContainerService.HintSize="478.4,166.4" sap2010:WorkflowViewState.IdRef="GetAttribute_1">
               <ui:GetAttribute.Result>
                 <OutArgument x:TypeArguments="x:String">[applicantName]</OutArgument>
               </ui:GetAttribute.Result>
@@ -124,7 +130,7 @@
                 </ui:Target>
               </ui:GetAttribute.Target>
             </ui:GetAttribute>
-            <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="innerHTML" DisplayName="Get position title" sap:VirtualizedContainerService.HintSize="512,166.4" sap2010:WorkflowViewState.IdRef="GetAttribute_2">
+            <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="innerHTML" DisplayName="Get position title" sap:VirtualizedContainerService.HintSize="478.4,166.4" sap2010:WorkflowViewState.IdRef="GetAttribute_2">
               <ui:GetAttribute.Result>
                 <OutArgument x:TypeArguments="x:String">[positionTitle]</OutArgument>
               </ui:GetAttribute.Result>
@@ -139,12 +145,47 @@
                 </ui:Target>
               </ui:GetAttribute.Target>
             </ui:GetAttribute>
-            <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim pFrom As Int32 = a.IndexOf(&quot;Applied to &quot;) + &quot;Applied to &quot;.Length&#xA;Dim pTo As Int32 = a.LastIndexOf(&quot; -&quot;)&#xA;a = a.Substring(pFrom, pTo - pFrom)" DisplayName="Filter position title" sap:VirtualizedContainerService.HintSize="512,164.8" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+            <Sequence DisplayName="Get location" sap:VirtualizedContainerService.HintSize="478.4,384" sap2010:WorkflowViewState.IdRef="Sequence_7">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="436.8,291.2" sap2010:WorkflowViewState.IdRef="TryCatch_3">
+                <TryCatch.Try>
+                  <Assign sap:VirtualizedContainerService.HintSize="262.4,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[location]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[positionTitle.Split("-"c)(1).Trim]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                </TryCatch.Try>
+                <TryCatch.Catches>
+                  <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="403.2,22.4" sap2010:WorkflowViewState.IdRef="Catch`1_3">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ActivityAction x:TypeArguments="s:Exception">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                      </ActivityAction.Argument>
+                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Warn" Message="[&quot;Failed to get location for applicant: &quot; + applicantName]" />
+                    </ActivityAction>
+                  </Catch>
+                </TryCatch.Catches>
+              </TryCatch>
+            </Sequence>
+            <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim pFrom As Int32 = a.IndexOf(&quot;Applied to &quot;) + &quot;Applied to &quot;.Length&#xA;Dim pTo As Int32 = a.LastIndexOf(&quot; -&quot;)&#xA;a = a.Substring(pFrom, pTo - pFrom)" DisplayName="Filter position title" sap:VirtualizedContainerService.HintSize="478.4,164.8" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
               <ui:InvokeCode.Arguments>
                 <InOutArgument x:TypeArguments="x:String" x:Key="a">[positionTitle]</InOutArgument>
               </ui:InvokeCode.Arguments>
             </ui:InvokeCode>
-            <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="512,746.4" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+            <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="478.4,746.4" sap2010:WorkflowViewState.IdRef="TryCatch_2">
               <TryCatch.Try>
                 <Sequence sap:VirtualizedContainerService.HintSize="375.2,515.2" sap2010:WorkflowViewState.IdRef="Sequence_6">
                   <sap:WorkflowViewStateService.ViewState>
@@ -212,11 +253,12 @@
                     <ActivityAction.Argument>
                       <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
                     </ActivityAction.Argument>
+                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Warn" Message="[applicantName + &quot; has no phone number&quot;]" />
                   </ActivityAction>
                 </Catch>
               </TryCatch.Catches>
             </TryCatch>
-            <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="512,1017.6" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+            <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="478.4,187.2" sap2010:WorkflowViewState.IdRef="TryCatch_1">
               <TryCatch.Try>
                 <Sequence sap:VirtualizedContainerService.HintSize="475.2,786.4" sap2010:WorkflowViewState.IdRef="Sequence_5">
                   <sap:WorkflowViewStateService.ViewState>
@@ -283,7 +325,7 @@
                 </Sequence>
               </TryCatch.Try>
               <TryCatch.Catches>
-                <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="478.4,22.4" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="400,22.4" sap2010:WorkflowViewState.IdRef="Catch`1_1">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -294,21 +336,40 @@
                     <ActivityAction.Argument>
                       <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
                     </ActivityAction.Argument>
+                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Warn" Message="[&quot;Failed to download resume for applicant: &quot; + applicantName]" />
                   </ActivityAction>
                 </Catch>
               </TryCatch.Catches>
             </TryCatch>
-            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke AddRowToMasterList workflow" sap:VirtualizedContainerService.HintSize="512,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="Helpers\AddRowToMasterList.xaml">
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke AddRowToMasterList workflow" sap:VirtualizedContainerService.HintSize="478.4,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="Helpers\AddRowToMasterList.xaml">
               <ui:InvokeWorkflowFile.Arguments>
-                <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_DTResult">[io_DTResult]</InOutArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="in_Location">-</InArgument>
-                <InArgument x:TypeArguments="si:FileInfo" x:Key="in_DownloadedFile">[downloadedFile]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="in_PositionApplied">[positionTitle]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="in_ApplicantName">[applicantName]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="in_PhoneNumber">[phoneNUmber]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="in_SourceID">[in_ApplicantID]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="in_EmailOrSkype">-</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="in_Source">INDEED</InArgument>
+                <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_DTResult">
+                  <mva:VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="io_DTResult" />
+                </InOutArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_Location">
+                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="location" />
+                </InArgument>
+                <InArgument x:TypeArguments="si:FileInfo" x:Key="in_DownloadedFile">
+                  <mva:VisualBasicValue x:TypeArguments="si:FileInfo" ExpressionText="downloadedFile" />
+                </InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_PositionApplied">
+                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="positionTitle" />
+                </InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_ApplicantName">
+                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="applicantName" />
+                </InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_PhoneNumber">
+                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="phoneNUmber" />
+                </InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_SourceID">
+                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_ApplicantID" />
+                </InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_EmailOrSkype">
+                  <Literal x:TypeArguments="x:String">-</Literal>
+                </InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_Source">
+                  <Literal x:TypeArguments="x:String">INDEED</Literal>
+                </InArgument>
               </ui:InvokeWorkflowFile.Arguments>
             </ui:InvokeWorkflowFile>
           </Sequence>
