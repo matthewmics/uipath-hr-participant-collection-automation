@@ -471,21 +471,15 @@
                                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                               </scg:Dictionary>
                                             </sap:WorkflowViewStateService.ViewState>
-                                            <ui:InvokeCode ContinueOnError="{x:Null}" Code="&#xA;wl.AddLast(New String() {&quot;Jobstreet&quot;, &quot;11193602&quot;})" DisplayName="Add Work Item" sap:VirtualizedContainerService.HintSize="435.2,164.8" sap2010:WorkflowViewState.IdRef="InvokeCode_3">
-                                              <ui:InvokeCode.Arguments>
-                                                <InOutArgument x:TypeArguments="scg1:LinkedList(s:String[])" x:Key="wl">[WorkItems]</InOutArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="jobID">11193602</InArgument>
-                                              </ui:InvokeCode.Arguments>
-                                            </ui:InvokeCode>
-                                            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="435.2,336" sap2010:WorkflowViewState.IdRef="CommentOut_3">
+                                            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="435.2,336" sap2010:WorkflowViewState.IdRef="CommentOut_4">
                                               <ui:CommentOut.Body>
-                                                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="375.2,257.6" sap2010:WorkflowViewState.IdRef="Sequence_54">
+                                                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="375.2,257.6" sap2010:WorkflowViewState.IdRef="Sequence_59">
                                                   <sap:WorkflowViewStateService.ViewState>
                                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                                     </scg:Dictionary>
                                                   </sap:WorkflowViewStateService.ViewState>
-                                                  <ui:InvokeCode ContinueOnError="{x:Null}" Code="wl.AddLast(New String() {&quot;Indeed&quot;, &quot;ad23c5959e0b&quot;})&#xA;wl.AddLast(New String() {&quot;Indeed&quot;, &quot;86d2fd25b5bb&quot;})&#xA;&#xA;wl.AddLast(New String() {&quot;Facebook&quot;, &quot;Jsl Vtnt&quot;})&#xA;wl.AddLast(New String() {&quot;Facebook&quot;, &quot;David Cruz Magelan-RPA&quot;})&#xA;wl.AddLast(New String() {&quot;Facebook&quot;, &quot;Johnson Ruz Magelan&quot;})&#xA;&#xA;wl.AddLast(New String() {&quot;Website&quot;, &quot;6557&quot;})&#xA;wl.AddLast(New String() {&quot;Website&quot;, &quot;6555&quot;})&#xA;&#xA;wl.AddLast(New String() {&quot;Jobstreet&quot;, &quot;11193602&quot;})&#xA;" DisplayName="Add Work Item" sap:VirtualizedContainerService.HintSize="333.6,164.8" sap2010:WorkflowViewState.IdRef="InvokeCode_6">
+                                                  <ui:InvokeCode ContinueOnError="{x:Null}" Code="&#xA;wl.AddLast(New String() {&quot;Jobstreet&quot;, &quot;11193602&quot;})" DisplayName="Add Work Item" sap:VirtualizedContainerService.HintSize="333.6,164.8" sap2010:WorkflowViewState.IdRef="InvokeCode_3">
                                                     <ui:InvokeCode.Arguments>
                                                       <InOutArgument x:TypeArguments="scg1:LinkedList(s:String[])" x:Key="wl">[WorkItems]</InOutArgument>
                                                       <InArgument x:TypeArguments="x:String" x:Key="jobID">11193602</InArgument>
@@ -494,6 +488,12 @@
                                                 </Sequence>
                                               </ui:CommentOut.Body>
                                             </ui:CommentOut>
+                                            <ui:InvokeCode ContinueOnError="{x:Null}" Code="wl.AddLast(New String() {&quot;Indeed&quot;, &quot;ad23c5959e0b&quot;})&#xA;wl.AddLast(New String() {&quot;Indeed&quot;, &quot;86d2fd25b5bb&quot;})&#xA;&#xA;wl.AddLast(New String() {&quot;Facebook&quot;, &quot;Jsl Vtnt&quot;})&#xA;wl.AddLast(New String() {&quot;Facebook&quot;, &quot;David Cruz Magelan-RPA&quot;})&#xA;wl.AddLast(New String() {&quot;Facebook&quot;, &quot;Johnson Ruz Magelan&quot;})&#xA;&#xA;wl.AddLast(New String() {&quot;Website&quot;, &quot;6557&quot;})&#xA;wl.AddLast(New String() {&quot;Website&quot;, &quot;6555&quot;})&#xA;&#xA;wl.AddLast(New String() {&quot;Jobstreet&quot;, &quot;11193602&quot;})&#xA;" DisplayName="Add Work Item" sap:VirtualizedContainerService.HintSize="435.2,164.8" sap2010:WorkflowViewState.IdRef="InvokeCode_6">
+                                              <ui:InvokeCode.Arguments>
+                                                <InOutArgument x:TypeArguments="scg1:LinkedList(s:String[])" x:Key="wl">[WorkItems]</InOutArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="jobID">11193602</InArgument>
+                                              </ui:InvokeCode.Arguments>
+                                            </ui:InvokeCode>
                                           </Sequence>
                                         </If.Then>
                                         <If.Else>
