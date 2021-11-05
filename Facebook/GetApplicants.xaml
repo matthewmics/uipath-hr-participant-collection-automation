@@ -7,11 +7,12 @@
     <x:Property Name="in_CollectionThreshold" Type="InArgument(x:Int32)" />
     <x:Property Name="in_DTFacebookList" Type="InArgument(sd:DataTable)" />
     <x:Property Name="in_TargetParticipant" Type="InArgument(x:String)" />
+    <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>821.6,8389.6</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1133.6,8389.6</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>GetApplicants_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="31">
@@ -83,6 +84,7 @@
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
       <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
       <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="GetApplicants" sap:VirtualizedContainerService.HintSize="832,8324.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
@@ -655,7 +657,7 @@
                       </ui:Target>
                     </ui:GetAttribute.Target>
                   </ui:GetAttribute>
-                  <Assign DisplayName="Format position title" sap:VirtualizedContainerService.HintSize="583.2,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+                  <Assign DisplayName="Format position title" sap:VirtualizedContainerService.HintSize="638.4,60" sap2010:WorkflowViewState.IdRef="Assign_3">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[positionTitle]</OutArgument>
                     </Assign.To>
@@ -663,7 +665,7 @@
                       <InArgument x:TypeArguments="x:String">[positionTitle.Remove(0, "Application: ".Length)]</InArgument>
                     </Assign.Value>
                   </Assign>
-                  <ui:GetLastDownloadedFile Timeout="{x:Null}" DisplayName="Wait for Download" DownloadFolder="[Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), &quot;Downloads&quot;)]" File="[downloadedFile]" sap:VirtualizedContainerService.HintSize="583.2,409.6" sap2010:WorkflowViewState.IdRef="GetLastDownloadedFile_1">
+                  <ui:GetLastDownloadedFile Timeout="{x:Null}" DisplayName="Wait for Download" DownloadFolder="[Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), &quot;Downloads&quot;)]" File="[downloadedFile]" sap:VirtualizedContainerService.HintSize="638.4,409.6" sap2010:WorkflowViewState.IdRef="GetLastDownloadedFile_1">
                     <ui:GetLastDownloadedFile.Body>
                       <ActivityAction>
                         <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="375.2,200" sap2010:WorkflowViewState.IdRef="Sequence_10">
@@ -698,20 +700,41 @@
                       </ActivityAction>
                     </ui:GetLastDownloadedFile.Body>
                   </ui:GetLastDownloadedFile>
-                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke AddRowToMasterList workflow" sap:VirtualizedContainerService.HintSize="583.2,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="Helpers\AddRowToMasterList.xaml">
+                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke AddRowToMasterList workflow" sap:VirtualizedContainerService.HintSize="638.4,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="Helpers\AddRowToMasterList.xaml">
                     <ui:InvokeWorkflowFile.Arguments>
-                      <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_DTResult">[io_DTResult]</InOutArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="in_Location">-</InArgument>
-                      <InArgument x:TypeArguments="si:FileInfo" x:Key="in_DownloadedFile">[downloadedFile]</InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="in_PositionApplied">[positionTitle]</InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="in_ApplicantName">[nameApplicant]</InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="in_PhoneNumber">[phoneNumber]</InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="in_SourceID">-</InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="in_EmailOrSkype">-</InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="in_Source">FACEBOOK</InArgument>
+                      <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_DTResult">
+                        <mva:VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="io_DTResult" />
+                      </InOutArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_Location">
+                        <Literal x:TypeArguments="x:String">-</Literal>
+                      </InArgument>
+                      <InArgument x:TypeArguments="si:FileInfo" x:Key="in_DownloadedFile">
+                        <mva:VisualBasicValue x:TypeArguments="si:FileInfo" ExpressionText="downloadedFile" />
+                      </InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_PositionApplied">
+                        <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="positionTitle" />
+                      </InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_ApplicantName">
+                        <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="nameApplicant" />
+                      </InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_PhoneNumber">
+                        <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="phoneNumber" />
+                      </InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_SourceID">
+                        <Literal x:TypeArguments="x:String">-</Literal>
+                      </InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_EmailOrSkype">
+                        <Literal x:TypeArguments="x:String">-</Literal>
+                      </InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_Source">
+                        <Literal x:TypeArguments="x:String">FACEBOOK</Literal>
+                      </InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_ResumesLocation">
+                        <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;LocationResumes&quot;).ToString" />
+                      </InArgument>
                     </ui:InvokeWorkflowFile.Arguments>
                   </ui:InvokeWorkflowFile>
-                  <If Condition="[in_TargetParticipant.Equals(&quot;end&quot;)]" sap:VirtualizedContainerService.HintSize="583.2,239.2" sap2010:WorkflowViewState.IdRef="If_8">
+                  <If Condition="[in_TargetParticipant.Equals(&quot;end&quot;)]" sap:VirtualizedContainerService.HintSize="638.4,239.2" sap2010:WorkflowViewState.IdRef="If_8">
                     <If.Then>
                       <ui:Break sap:VirtualizedContainerService.HintSize="200,22.4" sap2010:WorkflowViewState.IdRef="Break_4" />
                     </If.Then>

@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="AddRowToMasterList" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:si="clr-namespace:System.IO;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="AddRowToMasterList" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:si="clr-namespace:System.IO;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="io_DTResult" Type="InOutArgument(sd:DataTable)" />
     <x:Property Name="in_Location" Type="InArgument(x:String)" />
@@ -9,14 +9,15 @@
     <x:Property Name="in_SourceID" Type="InArgument(x:String)" />
     <x:Property Name="in_EmailOrSkype" Type="InArgument(x:String)" />
     <x:Property Name="in_Source" Type="InArgument(x:String)" />
+    <x:Property Name="in_ResumesLocation" Type="InArgument(x:String)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>704.8,697.6</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1133.6,1097.6</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>AddRowToMasterList_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
-    <sco:Collection x:TypeArguments="x:String">
+    <scg:List x:TypeArguments="x:String" Capacity="28">
       <x:String>System.Activities</x:String>
       <x:String>System.Activities.Statements</x:String>
       <x:String>System.Activities.Expressions</x:String>
@@ -45,10 +46,10 @@
       <x:String>System.Runtime.Serialization</x:String>
       <x:String>System.Xml.Serialization</x:String>
       <x:String>System.Activities.DynamicUpdate</x:String>
-    </sco:Collection>
+    </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <sco:Collection x:TypeArguments="AssemblyReference">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="54">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -76,9 +77,10 @@
       <AssemblyReference>UiPath.Mail</AssemblyReference>
       <AssemblyReference>UiPath.OCR.Activities.Design</AssemblyReference>
       <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
-    </sco:Collection>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+    </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="AddRowToMasterList" sap:VirtualizedContainerService.HintSize="589.6,632.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="AddRowToMasterList" sap:VirtualizedContainerService.HintSize="711.2,1032.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Default="-" Name="resumePath" />
     </Sequence.Variables>
@@ -87,7 +89,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <If Condition="[in_DownloadedFile is Nothing]" sap:VirtualizedContainerService.HintSize="548,312" sap2010:WorkflowViewState.IdRef="If_1">
+    <If Condition="[in_DownloadedFile is Nothing]" sap:VirtualizedContainerService.HintSize="669.6,712" sap2010:WorkflowViewState.IdRef="If_1">
       <If.Then>
         <Sequence sap:VirtualizedContainerService.HintSize="200,84.8" sap2010:WorkflowViewState.IdRef="Sequence_2">
           <sap:WorkflowViewStateService.ViewState>
@@ -98,23 +100,44 @@
         </Sequence>
       </If.Then>
       <If.Else>
-        <Sequence sap:VirtualizedContainerService.HintSize="304,152.8" sap2010:WorkflowViewState.IdRef="Sequence_3">
+        <Sequence sap:VirtualizedContainerService.HintSize="425.6,552.8" sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <Sequence.Variables>
+            <Variable x:TypeArguments="x:String" Name="resumeName" />
+            <Variable x:TypeArguments="x:String" Name="resumeLink" />
+          </Sequence.Variables>
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <Assign sap:VirtualizedContainerService.HintSize="262.4,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+          <Assign sap:VirtualizedContainerService.HintSize="384,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[resumeName]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[Datetime.Now.Ticks.ToString + in_DownloadedFile.Extension]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <ui:MoveFile ContinueOnError="{x:Null}" Destination="[Path.Combine(in_ResumesLocation, resumeName)]" DisplayName="Move File" sap:VirtualizedContainerService.HintSize="384,160" sap2010:WorkflowViewState.IdRef="MoveFile_1" Overwrite="True" Path="[in_DownloadedFile.FullName]" />
+          <Assign sap:VirtualizedContainerService.HintSize="384,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[resumeLink]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[String.Format("https://connextgs-my.sharepoint.com/personal/dyambao_connextglobal_com/_layouts/15/onedrive.aspx?id=/personal/dyambao_connextglobal_com/Documents/RPA Project/Resumes/{0}&amp;parent=/personal/dyambao_connextglobal_com/Documents/RPA Project/Resumes", resumeName)]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <Assign sap:VirtualizedContainerService.HintSize="384,60" sap2010:WorkflowViewState.IdRef="Assign_1">
             <Assign.To>
               <OutArgument x:TypeArguments="x:String">[resumePath]</OutArgument>
             </Assign.To>
             <Assign.Value>
-              <InArgument x:TypeArguments="x:String">["=HYPERLINK(" +"""" + in_DownloadedFile.FullName + """"+ "," + """Resume""" + ")"]</InArgument>
+              <InArgument x:TypeArguments="x:String">[resumeLink]</InArgument>
             </Assign.Value>
           </Assign>
         </Sequence>
       </If.Else>
     </If>
-    <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&#xA;&#x9;resumePath,&#xA;&#x9;DateTime.Now.ToString(&quot;MM/dd/yyyy&quot;),&#xA;&#x9;&quot;&quot;,&#xA;&#x9;in_Source,&#xA;&#x9;in_Location,&#xA;&#x9;&quot;&quot;,&#xA;&#x9;in_ApplicantName,&#xA;&#x9;&quot;&quot;,&#xA;&#x9;in_PositionApplied,&#xA;&#x9;&quot;'&quot; + in_PhoneNumber,&#xA;&#x9;in_EmailOrSkype,&#xA;&#x9;&quot;&quot;, &quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;, &quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&#xA;&#x9;&quot;'&quot; +in_SourceID&#xA;}]" DataTable="[io_DTResult]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="548,188" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
+    <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&#xD;&#xA;&#x9;resumePath,&#xD;&#xA;&#x9;DateTime.Now.ToString(&quot;MM/dd/yyyy&quot;),&#xD;&#xA;&#x9;&quot;&quot;,&#xD;&#xA;&#x9;in_Source,&#xD;&#xA;&#x9;in_Location,&#xD;&#xA;&#x9;&quot;&quot;,&#xD;&#xA;&#x9;in_ApplicantName,&#xD;&#xA;&#x9;&quot;&quot;,&#xD;&#xA;&#x9;in_PositionApplied,&#xD;&#xA;&#x9;&quot;'&quot; + in_PhoneNumber,&#xD;&#xA;&#x9;in_EmailOrSkype,&#xD;&#xA;&#x9;&quot;&quot;, &quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;, &quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&#xD;&#xA;&#x9;&quot;'&quot; +in_SourceID&#xD;&#xA;}]" DataTable="[io_DTResult]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="669.6,188" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
   </Sequence>
 </Activity>
