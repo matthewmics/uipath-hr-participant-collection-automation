@@ -6,7 +6,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1093.6,868.8</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>709.6,868.8</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Main2_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -83,7 +83,6 @@
       <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
       <AssemblyReference>System.Data.SQLite</AssemblyReference>
       <AssemblyReference>SQLiteActivities</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <StateMachine InitialState="{x:Reference __ReferenceID3}" sap2010:Annotation.AnnotationText="[Process title]&#xA;[Process description]&#xA;[Additional information (e.g., author, contact information and applications involved and required external setup)]" DisplayName="General Business Process" sap:VirtualizedContainerService.HintSize="633.6,804" sap2010:WorkflowViewState.IdRef="StateMachine_1">
@@ -142,39 +141,17 @@
                 <TryCatch.Try>
                   <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke GetTransactionData workflow" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_20" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="Framework\GetTransactionData.xaml">
                     <ui:InvokeWorkflowFile.Arguments>
-                      <InArgument x:TypeArguments="x:Int32" x:Key="in_TransactionNumber">
-                        <mva:VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="TransactionNumber" />
-                      </InArgument>
-                      <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
-                        <mva:VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="Config" />
-                      </InArgument>
-                      <OutArgument x:TypeArguments="s:String[]" x:Key="out_TransactionItem">
-                        <mva:VisualBasicReference x:TypeArguments="s:String[]" ExpressionText="TransactionItem" />
-                      </OutArgument>
-                      <OutArgument x:TypeArguments="x:String" x:Key="out_TransactionField1">
-                        <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="TransactionField1" />
-                      </OutArgument>
-                      <OutArgument x:TypeArguments="x:String" x:Key="out_TransactionField2">
-                        <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="TransactionField2" />
-                      </OutArgument>
-                      <OutArgument x:TypeArguments="x:String" x:Key="out_TransactionID">
-                        <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="TransactionID" />
-                      </OutArgument>
-                      <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_TransactionData">
-                        <mva:VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="TransactionData" />
-                      </InOutArgument>
-                      <InArgument x:TypeArguments="scg1:LinkedList(s:String[])" x:Key="in_WorkItems">
-                        <mva:VisualBasicValue x:TypeArguments="scg1:LinkedList(s:String[])" ExpressionText="WorkItems" />
-                      </InArgument>
-                      <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DTResult">
-                        <mva:VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="DTResult" />
-                      </InArgument>
-                      <InArgument x:TypeArguments="scg:List(x:String)" x:Key="in_EmailRecipients">
-                        <mva:VisualBasicValue x:TypeArguments="scg:List(x:String)" ExpressionText="EmailRecipients" />
-                      </InArgument>
-                      <InArgument x:TypeArguments="sds:SQLiteConnection" x:Key="in_SqliteConnection">
-                        <mva:VisualBasicValue x:TypeArguments="sds:SQLiteConnection" ExpressionText="SqliteConnection" />
-                      </InArgument>
+                      <InArgument x:TypeArguments="x:Int32" x:Key="in_TransactionNumber">[TransactionNumber]</InArgument>
+                      <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[Config]</InArgument>
+                      <OutArgument x:TypeArguments="s:String[]" x:Key="out_TransactionItem">[TransactionItem]</OutArgument>
+                      <OutArgument x:TypeArguments="x:String" x:Key="out_TransactionField1">[TransactionField1]</OutArgument>
+                      <OutArgument x:TypeArguments="x:String" x:Key="out_TransactionField2">[TransactionField2]</OutArgument>
+                      <OutArgument x:TypeArguments="x:String" x:Key="out_TransactionID">[TransactionID]</OutArgument>
+                      <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_TransactionData">[TransactionData]</InOutArgument>
+                      <InArgument x:TypeArguments="scg1:LinkedList(s:String[])" x:Key="in_WorkItems">[WorkItems]</InArgument>
+                      <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DTResult">[DTResult]</InArgument>
+                      <InArgument x:TypeArguments="scg:List(x:String)" x:Key="in_EmailRecipients">[EmailRecipients]</InArgument>
+                      <InArgument x:TypeArguments="sds:SQLiteConnection" x:Key="in_SqliteConnection">[SqliteConnection]</InArgument>
                     </ui:InvokeWorkflowFile.Arguments>
                   </ui:InvokeWorkflowFile>
                 </TryCatch.Try>
@@ -262,18 +239,10 @@
                       </Assign>
                       <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Process workflow" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_24" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="Process.xaml">
                         <ui:InvokeWorkflowFile.Arguments>
-                          <InArgument x:TypeArguments="s:String[]" x:Key="in_TransactionItem">
-                            <mva:VisualBasicValue x:TypeArguments="s:String[]" ExpressionText="TransactionItem" />
-                          </InArgument>
-                          <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
-                            <mva:VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="Config" />
-                          </InArgument>
-                          <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_DTResult">
-                            <mva:VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="DTResult" />
-                          </InOutArgument>
-                          <InArgument x:TypeArguments="sds:SQLiteConnection" x:Key="in_SqliteConnection">
-                            <mva:VisualBasicValue x:TypeArguments="sds:SQLiteConnection" ExpressionText="SqliteConnection" />
-                          </InArgument>
+                          <InArgument x:TypeArguments="s:String[]" x:Key="in_TransactionItem">[TransactionItem]</InArgument>
+                          <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[Config]</InArgument>
+                          <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_DTResult">[DTResult]</InOutArgument>
+                          <InArgument x:TypeArguments="sds:SQLiteConnection" x:Key="in_SqliteConnection">[SqliteConnection]</InArgument>
                         </ui:InvokeWorkflowFile.Arguments>
                       </ui:InvokeWorkflowFile>
                     </Sequence>
@@ -458,7 +427,7 @@
                                     <s1:CreateConnection DatabaseFullPath="[Path.Combine(Config(&quot;dbDirectory&quot;).ToString, Config(&quot;dbName&quot;).ToString)]" DisplayName="Create connection" sap:VirtualizedContainerService.HintSize="1056,134.4" sap2010:WorkflowViewState.IdRef="CreateConnection_1" Output="[SqliteConnection]" />
                                     <If Condition="[Directory.Exists(Config(&quot;LocationNewMasterList&quot;).ToString)]" DisplayName="Delete masterlist dir if exists" sap:VirtualizedContainerService.HintSize="1056,260" sap2010:WorkflowViewState.IdRef="If_13">
                                       <If.Then>
-                                        <ui:Delete ContinueOnError="{x:Null}" DisplayName="Delete masterlist dir" sap:VirtualizedContainerService.HintSize="290.4,80.8" sap2010:WorkflowViewState.IdRef="Delete_1" Path="[Config(&quot;LocationNewMasterList&quot;).ToString]" />
+                                        <ui:Delete ContinueOnError="{x:Null}" DisplayName="Delete masterlist dir" sap:VirtualizedContainerService.HintSize="292,80.8" sap2010:WorkflowViewState.IdRef="Delete_1" Path="[Config(&quot;LocationNewMasterList&quot;).ToString]" />
                                       </If.Then>
                                       <If.Else>
                                         <Sequence sap2010:WorkflowViewState.IdRef="Sequence_56">
@@ -506,21 +475,15 @@
                                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                               </scg:Dictionary>
                                             </sap:WorkflowViewStateService.ViewState>
-                                            <ui:InvokeCode ContinueOnError="{x:Null}" Code="wl.AddLast(New String() {&quot;Facebook&quot;, &quot;facebook&quot;})" DisplayName="Add Work Item" sap:VirtualizedContainerService.HintSize="435.2,164.8" sap2010:WorkflowViewState.IdRef="InvokeCode_3">
-                                              <ui:InvokeCode.Arguments>
-                                                <InOutArgument x:TypeArguments="scg1:LinkedList(s:String[])" x:Key="wl">[WorkItems]</InOutArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="jobID">11193602</InArgument>
-                                              </ui:InvokeCode.Arguments>
-                                            </ui:InvokeCode>
-                                            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="435.2,336" sap2010:WorkflowViewState.IdRef="CommentOut_7">
+                                            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="435.2,336" sap2010:WorkflowViewState.IdRef="CommentOut_9">
                                               <ui:CommentOut.Body>
-                                                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="375.2,257.6" sap2010:WorkflowViewState.IdRef="Sequence_65">
+                                                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="375.2,257.6" sap2010:WorkflowViewState.IdRef="Sequence_67">
                                                   <sap:WorkflowViewStateService.ViewState>
                                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                                     </scg:Dictionary>
                                                   </sap:WorkflowViewStateService.ViewState>
-                                                  <ui:InvokeCode ContinueOnError="{x:Null}" Code="wl.AddLast(New String() {&quot;Indeed&quot;, &quot;ad23c5959e0b&quot;})&#xD;&#xA;wl.AddLast(New String() {&quot;Indeed&quot;, &quot;86d2fd25b5bb&quot;})&#xD;&#xA;&#xD;&#xA;wl.AddLast(New String() {&quot;Facebook&quot;, &quot;Jsl Vtnt&quot;})&#xD;&#xA;wl.AddLast(New String() {&quot;Facebook&quot;, &quot;David Cruz Magelan-RPA&quot;})&#xD;&#xA;wl.AddLast(New String() {&quot;Facebook&quot;, &quot;Johnson Ruz Magelan&quot;})&#xD;&#xA;&#xD;&#xA;wl.AddLast(New String() {&quot;Website&quot;, &quot;6557&quot;})&#xD;&#xA;wl.AddLast(New String() {&quot;Website&quot;, &quot;6555&quot;})&#xD;&#xA;&#xD;&#xA;wl.AddLast(New String() {&quot;Jobstreet&quot;, &quot;11193602&quot;})&#xD;&#xA;" DisplayName="Add Work Item" sap:VirtualizedContainerService.HintSize="333.6,164.8" sap2010:WorkflowViewState.IdRef="InvokeCode_6">
+                                                  <ui:InvokeCode ContinueOnError="{x:Null}" Code="wl.AddLast(New String() {&quot;Facebook&quot;, &quot;facebook&quot;})" DisplayName="Add Work Item" sap:VirtualizedContainerService.HintSize="333.6,164.8" sap2010:WorkflowViewState.IdRef="InvokeCode_3">
                                                     <ui:InvokeCode.Arguments>
                                                       <InOutArgument x:TypeArguments="scg1:LinkedList(s:String[])" x:Key="wl">[WorkItems]</InOutArgument>
                                                       <InArgument x:TypeArguments="x:String" x:Key="jobID">11193602</InArgument>
@@ -529,6 +492,12 @@
                                                 </Sequence>
                                               </ui:CommentOut.Body>
                                             </ui:CommentOut>
+                                            <ui:InvokeCode ContinueOnError="{x:Null}" Code="wl.AddLast(New String() {&quot;Indeed&quot;, &quot;ad23c5959e0b&quot;})&#xD;&#xA;wl.AddLast(New String() {&quot;Indeed&quot;, &quot;86d2fd25b5bb&quot;})&#xD;&#xA;&#xD;&#xA;wl.AddLast(New String() {&quot;Facebook&quot;, &quot;Jsl Vtnt&quot;})&#xD;&#xA;wl.AddLast(New String() {&quot;Facebook&quot;, &quot;David Cruz Magelan-RPA&quot;})&#xD;&#xA;wl.AddLast(New String() {&quot;Facebook&quot;, &quot;Johnson Ruz Magelan&quot;})&#xD;&#xA;&#xD;&#xA;wl.AddLast(New String() {&quot;Website&quot;, &quot;6557&quot;})&#xD;&#xA;wl.AddLast(New String() {&quot;Website&quot;, &quot;6555&quot;})&#xD;&#xA;&#xD;&#xA;wl.AddLast(New String() {&quot;Jobstreet&quot;, &quot;11193602&quot;})&#xD;&#xA;" DisplayName="Add Work Item" sap:VirtualizedContainerService.HintSize="435.2,164.8" sap2010:WorkflowViewState.IdRef="InvokeCode_6">
+                                              <ui:InvokeCode.Arguments>
+                                                <InOutArgument x:TypeArguments="scg1:LinkedList(s:String[])" x:Key="wl">[WorkItems]</InOutArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="jobID">11193602</InArgument>
+                                              </ui:InvokeCode.Arguments>
+                                            </ui:InvokeCode>
                                           </Sequence>
                                         </If.Then>
                                         <If.Else>
@@ -595,18 +564,10 @@
                                               </ui:InvokeWorkflowFile>
                                               <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke ExtractJobItems workflow" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_57" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="Website\ExtractJobItems.xaml">
                                                 <ui:InvokeWorkflowFile.Arguments>
-                                                  <InOutArgument x:TypeArguments="scg1:LinkedList(s:String[])" x:Key="io_WorkItems">
-                                                    <mva:VisualBasicReference x:TypeArguments="scg1:LinkedList(s:String[])" ExpressionText="WorkItems" />
-                                                  </InOutArgument>
-                                                  <InArgument x:TypeArguments="x:Boolean" x:Key="in_UnitTest">
-                                                    <Literal x:TypeArguments="x:Boolean" />
-                                                  </InArgument>
-                                                  <InArgument x:TypeArguments="x:Int32" x:Key="in_CollectionThreshold">
-                                                    <mva:VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="Int32.Parse(Config(&quot;CollectionThreshold&quot;).ToString)" />
-                                                  </InArgument>
-                                                  <InArgument x:TypeArguments="sds:SQLiteConnection" x:Key="in_SqliteConnection">
-                                                    <mva:VisualBasicValue x:TypeArguments="sds:SQLiteConnection" ExpressionText="SqliteConnection" />
-                                                  </InArgument>
+                                                  <InOutArgument x:TypeArguments="scg1:LinkedList(s:String[])" x:Key="io_WorkItems">[WorkItems]</InOutArgument>
+                                                  <InArgument x:TypeArguments="x:Boolean" x:Key="in_UnitTest">False</InArgument>
+                                                  <InArgument x:TypeArguments="x:Int32" x:Key="in_CollectionThreshold">[Int32.Parse(Config("CollectionThreshold").ToString)]</InArgument>
+                                                  <InArgument x:TypeArguments="sds:SQLiteConnection" x:Key="in_SqliteConnection">[SqliteConnection]</InArgument>
                                                 </ui:InvokeWorkflowFile.Arguments>
                                               </ui:InvokeWorkflowFile>
                                               <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Logout workflow" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_58" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="Website\Logout.xaml">
@@ -633,18 +594,10 @@
                                               </ui:InvokeWorkflowFile>
                                               <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke ExtractJobItems workflow" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_61" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="Indeed\ExtractJobItems.xaml">
                                                 <ui:InvokeWorkflowFile.Arguments>
-                                                  <InOutArgument x:TypeArguments="scg1:LinkedList(s:String[])" x:Key="io_WorkItems">
-                                                    <mva:VisualBasicReference x:TypeArguments="scg1:LinkedList(s:String[])" ExpressionText="WorkItems" />
-                                                  </InOutArgument>
-                                                  <InArgument x:TypeArguments="x:Boolean" x:Key="in_UnitTest">
-                                                    <Literal x:TypeArguments="x:Boolean" />
-                                                  </InArgument>
-                                                  <InArgument x:TypeArguments="x:Int32" x:Key="in_CollectionThreshold">
-                                                    <mva:VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="Int32.Parse(Config(&quot;CollectionThreshold&quot;).ToString)" />
-                                                  </InArgument>
-                                                  <InArgument x:TypeArguments="sds:SQLiteConnection" x:Key="in_SqliteConnection">
-                                                    <mva:VisualBasicValue x:TypeArguments="sds:SQLiteConnection" ExpressionText="SqliteConnection" />
-                                                  </InArgument>
+                                                  <InOutArgument x:TypeArguments="scg1:LinkedList(s:String[])" x:Key="io_WorkItems">[WorkItems]</InOutArgument>
+                                                  <InArgument x:TypeArguments="x:Boolean" x:Key="in_UnitTest">False</InArgument>
+                                                  <InArgument x:TypeArguments="x:Int32" x:Key="in_CollectionThreshold">[Int32.Parse(Config("CollectionThreshold").ToString)]</InArgument>
+                                                  <InArgument x:TypeArguments="sds:SQLiteConnection" x:Key="in_SqliteConnection">[SqliteConnection]</InArgument>
                                                 </ui:InvokeWorkflowFile.Arguments>
                                               </ui:InvokeWorkflowFile>
                                               <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke close workflow" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_62" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="Indeed\close.xaml">
