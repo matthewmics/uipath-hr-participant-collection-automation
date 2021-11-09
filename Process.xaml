@@ -1,18 +1,17 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Process" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Process" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:sds="clr-namespace:System.Data.SQLite;assembly=System.Data.SQLite" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property sap2010:Annotation.AnnotationText="Transaction item to be processed." Name="in_TransactionItem" Type="InArgument(s:String[])" />
     <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
     <x:Property Name="io_DTResult" Type="InOutArgument(sd:DataTable)" />
-    <x:Property Name="in_DTFacebookList" Type="InArgument(sd:DataTable)" />
-    <x:Property Name="in_DTJobstreetList" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="in_SqliteConnection" Type="InArgument(sds:SQLiteConnection)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1133.6,1062.4</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1150.4,1062.4</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ProcessTransaction_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
-    <scg:List x:TypeArguments="x:String" Capacity="28">
+    <scg:List x:TypeArguments="x:String" Capacity="56">
       <x:String>System.Activities</x:String>
       <x:String>System.Activities.Statements</x:String>
       <x:String>System.Activities.Expressions</x:String>
@@ -41,6 +40,8 @@
       <x:String>System.Runtime.InteropServices</x:String>
       <x:String>System.Activities.DynamicUpdate</x:String>
       <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data.SQLite</x:String>
+      <x:String>System.Data.Common</x:String>
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -74,6 +75,7 @@
       <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
       <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>System.Data.SQLite</AssemblyReference>
       <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
@@ -117,11 +119,11 @@
             <InArgument x:TypeArguments="x:String" x:Key="in_JobID">
               <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_TransactionItem(1)" />
             </InArgument>
-            <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DTList">
-              <mva:VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="in_DTJobstreetList" />
-            </InArgument>
             <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
               <mva:VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="in_Config" />
+            </InArgument>
+            <InArgument x:TypeArguments="sds:SQLiteConnection" x:Key="in_Conn">
+              <mva:VisualBasicValue x:TypeArguments="sds:SQLiteConnection" ExpressionText="in_SqliteConnection" />
             </InArgument>
           </ui:InvokeWorkflowFile.Arguments>
         </ui:InvokeWorkflowFile>
@@ -140,18 +142,10 @@
         </ui:InvokeWorkflowFile>
         <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke ExtractApplicantInfo workflow" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="Indeed\ExtractApplicantInfo.xaml">
           <ui:InvokeWorkflowFile.Arguments>
-            <InArgument x:TypeArguments="x:Boolean" x:Key="in_UnitTest">
-              <Literal x:TypeArguments="x:Boolean" />
-            </InArgument>
-            <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_DTResult">
-              <mva:VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="io_DTResult" />
-            </InOutArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="in_ApplicantID">
-              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_TransactionItem(1)" />
-            </InArgument>
-            <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
-              <mva:VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="in_Config" />
-            </InArgument>
+            <InArgument x:TypeArguments="x:Boolean" x:Key="in_UnitTest">False</InArgument>
+            <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_DTResult">[io_DTResult]</InOutArgument>
+            <InArgument x:TypeArguments="x:String" x:Key="in_ApplicantID">[in_TransactionItem(1)]</InArgument>
+            <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
           </ui:InvokeWorkflowFile.Arguments>
         </ui:InvokeWorkflowFile>
       </Sequence>
@@ -172,14 +166,14 @@
           <InArgument x:TypeArguments="x:Int32" x:Key="in_CollectionThreshold">
             <mva:VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="collectionThreshold" />
           </InArgument>
-          <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DTFacebookList">
-            <mva:VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="in_DTFacebookList" />
-          </InArgument>
           <InArgument x:TypeArguments="x:String" x:Key="in_TargetParticipant">
             <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_TransactionItem(1)" />
           </InArgument>
           <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
             <mva:VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="in_Config" />
+          </InArgument>
+          <InArgument x:TypeArguments="sds:SQLiteConnection" x:Key="in_Conn">
+            <mva:VisualBasicValue x:TypeArguments="sds:SQLiteConnection" ExpressionText="in_SqliteConnection" />
           </InArgument>
         </ui:InvokeWorkflowFile.Arguments>
       </ui:InvokeWorkflowFile>
@@ -197,18 +191,10 @@
         </ui:InvokeWorkflowFile>
         <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke ExtractApplicantInfo workflow" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="Website\ExtractApplicantInfo.xaml">
           <ui:InvokeWorkflowFile.Arguments>
-            <InArgument x:TypeArguments="x:Boolean" x:Key="in_UnitTest">
-              <Literal x:TypeArguments="x:Boolean" />
-            </InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="in_ApplicantID">
-              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_TransactionItem(1)" />
-            </InArgument>
-            <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_DTResult">
-              <mva:VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="io_DTResult" />
-            </InOutArgument>
-            <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
-              <mva:VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="in_Config" />
-            </InArgument>
+            <InArgument x:TypeArguments="x:Boolean" x:Key="in_UnitTest">False</InArgument>
+            <InArgument x:TypeArguments="x:String" x:Key="in_ApplicantID">[in_TransactionItem(1)]</InArgument>
+            <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_DTResult">[io_DTResult]</InOutArgument>
+            <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
           </ui:InvokeWorkflowFile.Arguments>
         </ui:InvokeWorkflowFile>
       </Sequence>

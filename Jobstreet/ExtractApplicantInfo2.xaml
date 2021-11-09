@@ -1,17 +1,17 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="ExtractApplicantInfo2" this:ExtractApplicantInfo2.in_JobID="11193602" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:si="clr-namespace:System.IO;assembly=mscorlib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="ExtractApplicantInfo2" this:ExtractApplicantInfo2.in_JobID="11193602" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:sds="clr-namespace:System.Data.SQLite;assembly=System.Data.SQLite" xmlns:si="clr-namespace:System.IO;assembly=mscorlib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="io_DTResult" Type="InOutArgument(sd:DataTable)" />
     <x:Property Name="in_JobID" Type="InArgument(x:String)" />
-    <x:Property Name="in_DTList" Type="InArgument(sd:DataTable)" />
     <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property Name="in_Conn" Type="InArgument(sds:SQLiteConnection)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1133.6,5842.4</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1150.4,5842.4</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ExtractApplicantInfo2_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
-    <scg:List x:TypeArguments="x:String" Capacity="32">
+    <scg:List x:TypeArguments="x:String" Capacity="64">
       <x:String>System.Activities</x:String>
       <x:String>System.Activities.Statements</x:String>
       <x:String>System.Activities.Expressions</x:String>
@@ -44,10 +44,12 @@
       <x:String>UiPath.UIAutomationNext.Enums</x:String>
       <x:String>System.Text.RegularExpressions</x:String>
       <x:String>System.ComponentModel</x:String>
+      <x:String>System.Data.SQLite</x:String>
+      <x:String>System.Data.Common</x:String>
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="34">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="68">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -82,6 +84,7 @@
       <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
       <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
       <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+      <AssemblyReference>System.Data.SQLite</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="ExtractApplicantInfo2" sap:VirtualizedContainerService.HintSize="812.8,5777.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
@@ -205,7 +208,7 @@
                             </Sequence>
                           </If.Else>
                         </If>
-                        <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Get applicant name" sap:VirtualizedContainerService.HintSize="483.2,68.8" sap2010:WorkflowViewState.IdRef="GetValue_1">
+                        <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Get applicant name" sap:VirtualizedContainerService.HintSize="512,68.8" sap2010:WorkflowViewState.IdRef="GetValue_1">
                           <ui:GetValue.Target>
                             <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="0f8dc0a2-5fe3-4a3a-84a5-05bf8ae12c69" Selector="[String.Format(&quot;&lt;webctrl css-selector='{0} .card-title' idx='{1}' /&gt;&quot;, selectorApplicantPanel, ctrApplicant)]">
                               <ui:Target.TimeoutMS>
@@ -220,15 +223,23 @@
                             <OutArgument x:TypeArguments="x:String">[applicantName]</OutArgument>
                           </ui:GetValue.Value>
                         </ui:GetValue>
-                        <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke IsApplicantCollected workflow" sap:VirtualizedContainerService.HintSize="483.2,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="Jobstreet\IsApplicantCollected.xaml">
+                        <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke CheckIfAlreadyDownloaded workflow" sap:VirtualizedContainerService.HintSize="512,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="Sqlite\Jobstreet\CheckIfAlreadyDownloaded.xaml">
                           <ui:InvokeWorkflowFile.Arguments>
-                            <OutArgument x:TypeArguments="x:Boolean" x:Key="out_Result">[isApplicantCollected]</OutArgument>
-                            <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DTJobstreetList">[in_DTList]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_JobID">[in_JobID]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_ApplicantName">[applicantName]</InArgument>
+                            <InArgument x:TypeArguments="sds:SQLiteConnection" x:Key="in_Connection">
+                              <mva:VisualBasicValue x:TypeArguments="sds:SQLiteConnection" ExpressionText="in_Conn" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_ApplicantName">
+                              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="applicantName" />
+                            </InArgument>
+                            <OutArgument x:TypeArguments="x:Boolean" x:Key="out_Result">
+                              <mva:VisualBasicReference x:TypeArguments="x:Boolean" ExpressionText="isApplicantCollected" />
+                            </OutArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_Source">
+                              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_JobID" />
+                            </InArgument>
                           </ui:InvokeWorkflowFile.Arguments>
                         </ui:InvokeWorkflowFile>
-                        <If Condition="[isApplicantCollected]" sap:VirtualizedContainerService.HintSize="483.2,239.2" sap2010:WorkflowViewState.IdRef="If_6">
+                        <If Condition="[isApplicantCollected]" sap:VirtualizedContainerService.HintSize="512,239.2" sap2010:WorkflowViewState.IdRef="If_6">
                           <If.Then>
                             <ui:Continue sap:VirtualizedContainerService.HintSize="200,22.4" sap2010:WorkflowViewState.IdRef="Continue_1" />
                           </If.Then>
@@ -449,36 +460,16 @@
                         </TryCatch>
                         <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke AddRowToMasterList workflow" sap:VirtualizedContainerService.HintSize="512,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="Helpers\AddRowToMasterList.xaml">
                           <ui:InvokeWorkflowFile.Arguments>
-                            <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_DTResult">
-                              <mva:VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="io_DTResult" />
-                            </InOutArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_Location">
-                              <Literal x:TypeArguments="x:String">-</Literal>
-                            </InArgument>
-                            <InArgument x:TypeArguments="si:FileInfo" x:Key="in_DownloadedFile">
-                              <mva:VisualBasicValue x:TypeArguments="si:FileInfo" ExpressionText="downloadedFile" />
-                            </InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_PositionApplied">
-                              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="positionApplied" />
-                            </InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_ApplicantName">
-                              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="applicantName" />
-                            </InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_PhoneNumber">
-                              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="phoneNumber" />
-                            </InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_SourceID">
-                              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_JobID" />
-                            </InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_EmailOrSkype">
-                              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="emailAddress" />
-                            </InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_Source">
-                              <Literal x:TypeArguments="x:String">JOBSTREET</Literal>
-                            </InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_ResumesLocation">
-                              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;LocationResumes&quot;).ToString" />
-                            </InArgument>
+                            <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_DTResult">[io_DTResult]</InOutArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_Location">-</InArgument>
+                            <InArgument x:TypeArguments="si:FileInfo" x:Key="in_DownloadedFile">[downloadedFile]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_PositionApplied">[positionApplied]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_ApplicantName">[applicantName]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_PhoneNumber">[phoneNumber]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_SourceID">[in_JobID]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_EmailOrSkype">[emailAddress]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_Source">JOBSTREET</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_ResumesLocation">[in_Config("LocationResumes").ToString]</InArgument>
                           </ui:InvokeWorkflowFile.Arguments>
                         </ui:InvokeWorkflowFile>
                       </Sequence>

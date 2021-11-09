@@ -1,21 +1,21 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="GetApplicants" this:GetApplicants.in_Test="1" this:GetApplicants.in_UnitTest="True" this:GetApplicants.in_OutputFolderResume="[Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), &quot;RPA_RESUME&quot;)]" this:GetApplicants.in_CollectionThreshold="5" this:GetApplicants.in_TargetParticipant="Lee Pascual" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:si="clr-namespace:System.IO;assembly=mscorlib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="GetApplicants" this:GetApplicants.in_Test="1" this:GetApplicants.in_UnitTest="True" this:GetApplicants.in_OutputFolderResume="[Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), &quot;RPA_RESUME&quot;)]" this:GetApplicants.in_CollectionThreshold="50" this:GetApplicants.in_TargetParticipant="Jsl Vtnt" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:sds="clr-namespace:System.Data.SQLite;assembly=System.Data.SQLite" xmlns:si="clr-namespace:System.IO;assembly=mscorlib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_Test" Type="InArgument(x:Int32)" />
     <x:Property Name="in_UnitTest" Type="InArgument(x:Boolean)" />
     <x:Property Name="in_OutputFolderResume" Type="InArgument(x:String)" />
     <x:Property Name="io_DTResult" Type="InOutArgument(sd:DataTable)" />
     <x:Property Name="in_CollectionThreshold" Type="InArgument(x:Int32)" />
-    <x:Property Name="in_DTFacebookList" Type="InArgument(sd:DataTable)" />
     <x:Property Name="in_TargetParticipant" Type="InArgument(x:String)" />
     <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property Name="in_Conn" Type="InArgument(sds:SQLiteConnection)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1133.6,8389.6</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1093.6,9120.8</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>GetApplicants_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
-    <scg:List x:TypeArguments="x:String" Capacity="31">
+    <scg:List x:TypeArguments="x:String" Capacity="34">
       <x:String>System.Activities</x:String>
       <x:String>System.Activities.Statements</x:String>
       <x:String>System.Activities.Expressions</x:String>
@@ -47,6 +47,9 @@
       <x:String>System.ComponentModel</x:String>
       <x:String>System.Runtime.Serialization</x:String>
       <x:String>System.Xml.Serialization</x:String>
+      <x:String>System.Data.SQLite</x:String>
+      <x:String>System.Data.Common</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -84,12 +87,12 @@
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
       <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
       <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+      <AssemblyReference>System.Data.SQLite</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="GetApplicants" sap:VirtualizedContainerService.HintSize="832,8324.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="GetApplicants" sap:VirtualizedContainerService.HintSize="832,9056" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
-      <Variable x:TypeArguments="x:Int32" Default="1" Name="ctrApplicant" />
+      <Variable x:TypeArguments="x:Int32" Default="22" Name="ctrApplicant" />
       <Variable x:TypeArguments="x:Int32" Default="5" Name="testApplicantsTotal" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
@@ -106,13 +109,13 @@
         </ui:InvokeWorkflowFile>
       </If.Then>
     </If>
-    <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Attach Browser 'chrome.exe Connext'" sap:VirtualizedContainerService.HintSize="790.4,7899.2" sap2010:WorkflowViewState.IdRef="BrowserScope_1" InformativeScreenshot="dba35321f8a6a8582bb21753cb0ea25c" Selector="&lt;html app='chrome.exe' title='*Connext Careers | Facebook' /&gt;">
+    <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Attach Browser 'chrome.exe Connext'" sap:VirtualizedContainerService.HintSize="790.4,8630.4" sap2010:WorkflowViewState.IdRef="BrowserScope_1" InformativeScreenshot="dba35321f8a6a8582bb21753cb0ea25c" Selector="&lt;html app='chrome.exe' title='*Connext Careers | Facebook' /&gt;">
       <ui:BrowserScope.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="756.8,7752" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="756.8,8483.2" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -138,9 +141,9 @@
                 </ui:Target>
               </ui:Activate.Target>
             </ui:Activate>
-            <ui:InterruptibleWhile Condition="True" DisplayName="While" sap:VirtualizedContainerService.HintSize="715.2,7450.4" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1">
+            <ui:InterruptibleWhile Condition="True" DisplayName="While" sap:VirtualizedContainerService.HintSize="715.2,8181.6" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1">
               <ui:InterruptibleWhile.Body>
-                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="680,7283.2" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                <Sequence DisplayName="Body of while" sap:VirtualizedContainerService.HintSize="680,8014.4" sap2010:WorkflowViewState.IdRef="Sequence_3">
                   <Sequence.Variables>
                     <Variable x:TypeArguments="ui:UiElement" Name="elementApplicant" />
                     <Variable x:TypeArguments="scg:IEnumerable(ui:UiElement)" Name="elementApplicantControls" />
@@ -153,6 +156,7 @@
                     </Variable>
                     <Variable x:TypeArguments="x:String" Name="positionTitle" />
                     <Variable x:TypeArguments="si:FileInfo" Name="downloadedFile" />
+                    <Variable x:TypeArguments="x:String" Name="dateAppliedinCard" />
                   </Sequence.Variables>
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -238,11 +242,12 @@
                       </ui:Target>
                     </ui:InjectJsScript.Target>
                   </ui:InjectJsScript>
-                  <Sequence DisplayName="Check if applicant already collected" sap:VirtualizedContainerService.HintSize="638.4,935.2" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                  <Sequence DisplayName="Check if applicant already collected" sap:VirtualizedContainerService.HintSize="638.4,1666.4" sap2010:WorkflowViewState.IdRef="Sequence_18">
                     <Sequence.Variables>
                       <Variable x:TypeArguments="x:String" Name="applicantNameInCard" />
                       <Variable x:TypeArguments="x:String" Name="appliedForInCard" />
                       <Variable x:TypeArguments="x:Boolean" Name="isAlreadyCollected" />
+                      <Variable x:TypeArguments="s:DateTime" Name="dateTimeApplied" />
                     </Sequence.Variables>
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -279,11 +284,56 @@
                         <OutArgument x:TypeArguments="x:String">[appliedForInCard]</OutArgument>
                       </ui:GetValue.Value>
                     </ui:GetValue>
-                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke IsApplicantCollected workflow" sap:VirtualizedContainerService.HintSize="483.2,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="Facebook\IsApplicantCollected.xaml">
+                    <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Get date applied in card" sap:VirtualizedContainerService.HintSize="483.2,107.2" sap2010:WorkflowViewState.IdRef="GetValue_5">
+                      <ui:GetValue.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="1a54d3e2-374b-49f3-a7e3-9b39f39c93f0" InformativeScreenshot="23222c2d9163c97684ff8b4d143783ae" Selector="[String.Format(&quot;&lt;webctrl css-selector='.aahdfvyu &amp;gt; div.b20td4e0 div.ew0dbk1b.irj2b8pg &amp;gt; div:nth-child(3)' idx='{0}' /&gt;&quot;, ctrApplicant)]">
+                          <ui:Target.TimeoutMS>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:Target.TimeoutMS>
+                          <ui:Target.WaitForReady>
+                            <InArgument x:TypeArguments="ui:WaitForReady" />
+                          </ui:Target.WaitForReady>
+                        </ui:Target>
+                      </ui:GetValue.Target>
+                      <ui:GetValue.Value>
+                        <OutArgument x:TypeArguments="x:String">[dateAppliedinCard]</OutArgument>
+                      </ui:GetValue.Value>
+                    </ui:GetValue>
+                    <ui:InvokeCode ContinueOnError="{x:Null}" Code="dateApplied = Regex.Match(dateApplied, &quot;([A-Za-z]{3} \d{1,2}, \d{4})&quot;).Value" DisplayName="Invoke code" sap:VirtualizedContainerService.HintSize="483.2,164.8" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+                      <ui:InvokeCode.Arguments>
+                        <InOutArgument x:TypeArguments="x:String" x:Key="dateApplied">
+                          <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="dateAppliedinCard" />
+                        </InOutArgument>
+                      </ui:InvokeCode.Arguments>
+                    </ui:InvokeCode>
+                    <Assign sap:VirtualizedContainerService.HintSize="483.2,60" sap2010:WorkflowViewState.IdRef="Assign_8">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="s:DateTime">[dateTimeApplied]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="s:DateTime">[DateTime.ParseExact(dateAppliedinCard, "MMM d, yyyy", Nothing)]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <If Condition="[DateTime.Compare(dateTimeApplied, new DateTime(2021, 11, 5)) &lt; 0]" sap:VirtualizedContainerService.HintSize="483.2,239.2" sap2010:WorkflowViewState.IdRef="If_12">
+                      <If.Then>
+                        <ui:Break sap:VirtualizedContainerService.HintSize="200,22.4" sap2010:WorkflowViewState.IdRef="Break_6" />
+                      </If.Then>
+                      <If.Else>
+                        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_29">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </Sequence>
+                      </If.Else>
+                    </If>
+                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke CheckIfAlreadyDownloaded workflow" sap:VirtualizedContainerService.HintSize="483.2,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="Sqlite\Facebook\CheckIfAlreadyDownloaded.xaml">
                       <ui:InvokeWorkflowFile.Arguments>
-                        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DTFacebookList">[in_DTFacebookList]</InArgument>
+                        <InArgument x:TypeArguments="sds:SQLiteConnection" x:Key="in_Connection">[in_Conn]</InArgument>
                         <InArgument x:TypeArguments="x:String" x:Key="in_ApplicantName">[applicantNameInCard]</InArgument>
-                        <InArgument x:TypeArguments="x:String" x:Key="in_AppliedFor">[appliedForInCard]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_PositionApplied">[appliedForInCard]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_DateApplied">[dateAppliedinCard]</InArgument>
                         <OutArgument x:TypeArguments="x:Boolean" x:Key="out_Result">[isAlreadyCollected]</OutArgument>
                       </ui:InvokeWorkflowFile.Arguments>
                     </ui:InvokeWorkflowFile>
@@ -343,7 +393,7 @@
                             <OutArgument x:TypeArguments="x:String">[applicantNameInCard]</OutArgument>
                           </ui:GetValue.Value>
                         </ui:GetValue>
-                        <If Condition="[in_TargetParticipant.Equals(applicantNameInCard)]" sap:VirtualizedContainerService.HintSize="506.4,219.2" sap2010:WorkflowViewState.IdRef="If_7">
+                        <If Condition="[in_TargetParticipant.ToLower.Equals(applicantNameInCard.ToLower)]" sap:VirtualizedContainerService.HintSize="506.4,219.2" sap2010:WorkflowViewState.IdRef="If_7">
                           <If.Then>
                             <Assign sap:VirtualizedContainerService.HintSize="262.4,60" sap2010:WorkflowViewState.IdRef="Assign_5">
                               <Assign.To>
@@ -702,36 +752,17 @@
                   </ui:GetLastDownloadedFile>
                   <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke AddRowToMasterList workflow" sap:VirtualizedContainerService.HintSize="638.4,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="Helpers\AddRowToMasterList.xaml">
                     <ui:InvokeWorkflowFile.Arguments>
-                      <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_DTResult">
-                        <mva:VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="io_DTResult" />
-                      </InOutArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="in_Location">
-                        <Literal x:TypeArguments="x:String">-</Literal>
-                      </InArgument>
-                      <InArgument x:TypeArguments="si:FileInfo" x:Key="in_DownloadedFile">
-                        <mva:VisualBasicValue x:TypeArguments="si:FileInfo" ExpressionText="downloadedFile" />
-                      </InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="in_PositionApplied">
-                        <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="positionTitle" />
-                      </InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="in_ApplicantName">
-                        <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="nameApplicant" />
-                      </InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="in_PhoneNumber">
-                        <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="phoneNumber" />
-                      </InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="in_SourceID">
-                        <Literal x:TypeArguments="x:String">-</Literal>
-                      </InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="in_EmailOrSkype">
-                        <Literal x:TypeArguments="x:String">-</Literal>
-                      </InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="in_Source">
-                        <Literal x:TypeArguments="x:String">FACEBOOK</Literal>
-                      </InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="in_ResumesLocation">
-                        <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;LocationResumes&quot;).ToString" />
-                      </InArgument>
+                      <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_DTResult">[io_DTResult]</InOutArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_Location">-</InArgument>
+                      <InArgument x:TypeArguments="si:FileInfo" x:Key="in_DownloadedFile">[downloadedFile]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_PositionApplied">[positionTitle]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_ApplicantName">[nameApplicant]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_PhoneNumber">[phoneNumber]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_SourceID">-</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_EmailOrSkype">-</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_Source">FACEBOOK</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_ResumesLocation">[in_Config("LocationResumes").ToString]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_DateApplied">[dateAppliedinCard]</InArgument>
                     </ui:InvokeWorkflowFile.Arguments>
                   </ui:InvokeWorkflowFile>
                   <If Condition="[in_TargetParticipant.Equals(&quot;end&quot;)]" sap:VirtualizedContainerService.HintSize="638.4,239.2" sap2010:WorkflowViewState.IdRef="If_8">

@@ -159,6 +159,21 @@
         "C:\\Users\\matth\\.nuget\\packages\\uipath.vision/3.1.0-preview\\lib/net461/UiPath.Vision.dll"
       ],
       "Path": "C:\\Users\\matth\\.nuget\\packages\\uipath.uiautomation.activities\\21.6.1-preview"
+    },
+    {
+      "Package": {
+        "Id": "SQLiteDatabaseForUiPath",
+        "Version": "1.0.17"
+      },
+      "Assemblies": [
+        "C:\\Users\\matth\\.nuget\\packages\\entityframework/6.2.0\\lib/net45/EntityFramework.dll",
+        "C:\\Users\\matth\\.nuget\\packages\\entityframework/6.2.0\\lib/net45/EntityFramework.SqlServer.dll",
+        "C:\\Users\\matth\\.nuget\\packages\\sqlitedatabaseforuipath/1.0.17\\lib/SQLiteActivities.dll",
+        "C:\\Users\\matth\\.nuget\\packages\\system.data.sqlite.core/1.0.110\\lib/net46/System.Data.SQLite.dll",
+        "C:\\Users\\matth\\.nuget\\packages\\system.data.sqlite.ef6/1.0.110\\lib/net46/System.Data.SQLite.EF6.dll",
+        "C:\\Users\\matth\\.nuget\\packages\\system.data.sqlite.linq/1.0.110\\lib/net46/System.Data.SQLite.Linq.dll"
+      ],
+      "Path": "C:\\Users\\matth\\.nuget\\packages\\sqlitedatabaseforuipath\\1.0.17"
     }
   ],
   "Conflicts": [],
@@ -195,6 +210,11 @@
     "DocumentFormat.OpenXml": {
       "Id": "DocumentFormat.OpenXml",
       "Version": "2.5.0",
+      "Dependencies": []
+    },
+    "EntityFramework": {
+      "Id": "EntityFramework",
+      "Version": "6.2.0",
       "Dependencies": []
     },
     "Google.Apis": {
@@ -693,6 +713,16 @@
       "Version": "1.2.0",
       "Dependencies": []
     },
+    "SQLiteDatabaseForUiPath": {
+      "Id": "SQLiteDatabaseForUiPath",
+      "Version": "1.0.17",
+      "Dependencies": [
+        {
+          "Item1": "System.Data.SQLite",
+          "Item2": "[1.0.110, )"
+        }
+      ]
+    },
     "System.Buffers": {
       "Id": "System.Buffers",
       "Version": "4.5.1",
@@ -716,6 +746,44 @@
     "System.Data.DataSetExtensions": {
       "Id": "System.Data.DataSetExtensions",
       "Version": "4.5.0",
+      "Dependencies": []
+    },
+    "System.Data.SQLite": {
+      "Id": "System.Data.SQLite",
+      "Version": "1.0.110",
+      "Dependencies": [
+        {
+          "Item1": "System.Data.SQLite.Core",
+          "Item2": "[1.0.110, )"
+        },
+        {
+          "Item1": "System.Data.SQLite.Linq",
+          "Item2": "[1.0.110, )"
+        },
+        {
+          "Item1": "System.Data.SQLite.EF6",
+          "Item2": "[1.0.110, )"
+        }
+      ]
+    },
+    "System.Data.SQLite.Core": {
+      "Id": "System.Data.SQLite.Core",
+      "Version": "1.0.110",
+      "Dependencies": []
+    },
+    "System.Data.SQLite.EF6": {
+      "Id": "System.Data.SQLite.EF6",
+      "Version": "1.0.110",
+      "Dependencies": [
+        {
+          "Item1": "EntityFramework",
+          "Item2": "[6.2.0, )"
+        }
+      ]
+    },
+    "System.Data.SQLite.Linq": {
+      "Id": "System.Data.SQLite.Linq",
+      "Version": "1.0.110",
       "Dependencies": []
     },
     "System.IO.Abstractions": {
@@ -1165,6 +1233,17 @@
     },
     {
       "Package": {
+        "Id": "EntityFramework",
+        "Version": "6.2.0"
+      },
+      "Assemblies": [
+        "C:\\Users\\matth\\.nuget\\packages\\entityframework\\6.2.0\\lib\\net45\\EntityFramework.dll",
+        "C:\\Users\\matth\\.nuget\\packages\\entityframework\\6.2.0\\lib\\net45\\EntityFramework.SqlServer.dll"
+      ],
+      "Path": "C:\\Users\\matth\\.nuget\\packages\\entityframework\\6.2.0"
+    },
+    {
+      "Package": {
         "Id": "Google.Apis",
         "Version": "1.43.0"
       },
@@ -1589,6 +1668,16 @@
     },
     {
       "Package": {
+        "Id": "SQLiteDatabaseForUiPath",
+        "Version": "1.0.17"
+      },
+      "Assemblies": [
+        "C:\\Users\\matth\\.nuget\\packages\\sqlitedatabaseforuipath\\1.0.17\\lib\\SQLiteActivities.dll"
+      ],
+      "Path": "C:\\Users\\matth\\.nuget\\packages\\sqlitedatabaseforuipath\\1.0.17"
+    },
+    {
+      "Package": {
         "Id": "System.Buffers",
         "Version": "4.5.1"
       },
@@ -1626,6 +1715,44 @@
         "C:\\Users\\matth\\.nuget\\packages\\system.data.datasetextensions\\4.5.0\\lib\\net45\\_._"
       ],
       "Path": "C:\\Users\\matth\\.nuget\\packages\\system.data.datasetextensions\\4.5.0"
+    },
+    {
+      "Package": {
+        "Id": "System.Data.SQLite",
+        "Version": "1.0.110"
+      },
+      "Assemblies": [],
+      "Path": "C:\\Users\\matth\\.nuget\\packages\\system.data.sqlite\\1.0.110"
+    },
+    {
+      "Package": {
+        "Id": "System.Data.SQLite.Core",
+        "Version": "1.0.110"
+      },
+      "Assemblies": [
+        "C:\\Users\\matth\\.nuget\\packages\\system.data.sqlite.core\\1.0.110\\lib\\net46\\System.Data.SQLite.dll"
+      ],
+      "Path": "C:\\Users\\matth\\.nuget\\packages\\system.data.sqlite.core\\1.0.110"
+    },
+    {
+      "Package": {
+        "Id": "System.Data.SQLite.EF6",
+        "Version": "1.0.110"
+      },
+      "Assemblies": [
+        "C:\\Users\\matth\\.nuget\\packages\\system.data.sqlite.ef6\\1.0.110\\lib\\net46\\System.Data.SQLite.EF6.dll"
+      ],
+      "Path": "C:\\Users\\matth\\.nuget\\packages\\system.data.sqlite.ef6\\1.0.110"
+    },
+    {
+      "Package": {
+        "Id": "System.Data.SQLite.Linq",
+        "Version": "1.0.110"
+      },
+      "Assemblies": [
+        "C:\\Users\\matth\\.nuget\\packages\\system.data.sqlite.linq\\1.0.110\\lib\\net46\\System.Data.SQLite.Linq.dll"
+      ],
+      "Path": "C:\\Users\\matth\\.nuget\\packages\\system.data.sqlite.linq\\1.0.110"
     },
     {
       "Package": {
