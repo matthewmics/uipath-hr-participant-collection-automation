@@ -8,7 +8,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1093.6,4788.8</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>802.4,4788.8</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ExtractJobItems_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg1:List x:TypeArguments="x:String" Capacity="64">
@@ -48,7 +48,7 @@
     </scg1:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg1:List x:TypeArguments="AssemblyReference" Capacity="30">
+    <scg1:List x:TypeArguments="AssemblyReference" Capacity="60">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -79,6 +79,7 @@
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
       <AssemblyReference>System.Data.SQLite</AssemblyReference>
       <AssemblyReference>SQLiteActivities</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg1:List>
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="ExtractJobItems" sap:VirtualizedContainerService.HintSize="812.8,4724" sap2010:WorkflowViewState.IdRef="Sequence_1">
@@ -244,7 +245,7 @@
                               <InArgument x:TypeArguments="s:DateTime">[DateTime.ParseExact(dateApplied, "yyyy/MM/dd", nothing)]</InArgument>
                             </Assign.Value>
                           </Assign>
-                          <If Condition="[DateTime.Compare(dateTimeDateApplied, new DateTime(2021,10, 18)) &lt; 0]" sap:VirtualizedContainerService.HintSize="483.2,394.4" sap2010:WorkflowViewState.IdRef="If_6">
+                          <If Condition="[DateTime.Compare(dateTimeDateApplied, new DateTime(2021, 9, 1)) &lt; 0]" sap:VirtualizedContainerService.HintSize="483.2,394.4" sap2010:WorkflowViewState.IdRef="If_6">
                             <If.Then>
                               <Sequence sap:VirtualizedContainerService.HintSize="304,215.2" sap2010:WorkflowViewState.IdRef="Sequence_16">
                                 <sap:WorkflowViewStateService.ViewState>
